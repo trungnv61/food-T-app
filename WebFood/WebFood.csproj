@@ -138,6 +138,7 @@
     <Content Include="Assets\Admin\icon\icofont\fonts\icofont.svg" />
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.svg" />
     <Content Include="Assets\Admin\icon\themify-icons\themify-icons.css" />
+    <Content Include="Assets\Admin\images\a.png" />
     <Content Include="Assets\Admin\images\auth\logo-dark.png" />
     <Content Include="Assets\Admin\images\auth\Logo-small-bottom.png" />
     <Content Include="Assets\Admin\images\auth\logo.png" />
@@ -146,12 +147,11 @@
     <Content Include="Assets\Admin\images\avatar-3.jpg" />
     <Content Include="Assets\Admin\images\avatar-4.jpg" />
     <Content Include="Assets\Admin\images\bg.jpg" />
-    <Content Include="Assets\Admin\images\favicon.ico" />
     <Content Include="Assets\Admin\images\flags\ENGLISH.jpg" />
     <Content Include="Assets\Admin\images\flags\FRANCE.jpg" />
     <Content Include="Assets\Admin\images\flags\PORTO.jpg" />
     <Content Include="Assets\Admin\images\flags\SPAIN.jpg" />
-    <Content Include="Assets\Admin\images\logo.png" />
+    <Content Include="Assets\Admin\images\Icon.png" />
     <Content Include="Assets\Admin\images\mega-menu\01.jpg" />
     <Content Include="Assets\Admin\images\mega-menu\02.jpg" />
     <Content Include="Assets\Admin\images\mega-menu\03.jpg" />
@@ -233,8 +233,11 @@
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.ttf" />
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.woff" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QuanLyTaiKhoan.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QuanLyDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QuanLyThucPham.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\DangKy.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

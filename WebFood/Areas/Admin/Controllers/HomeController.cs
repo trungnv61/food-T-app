@@ -19,5 +19,25 @@ namespace WebFood.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult QuanLyTaiKhoan()
+        {
+            return View();
+        }
+
+        public ActionResult QuanLyDonHang()
+        {
+            return View();
+        }
+
+        public ActionResult QuanLyThucPham()
+        {
+            return View();
+        }
+
+        public ActionResult DangKy()
+        {
+            return View();
+        }
     }
 }
