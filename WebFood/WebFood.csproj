@@ -122,6 +122,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyDonHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyTaiKhoanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyThucPhamController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,11 +236,11 @@
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.ttf" />
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.woff" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\QuanLyTaiKhoan.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\QuanLyDonHang.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\QuanLyThucPham.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\DangKy.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyThucPham\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\DangNhap.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

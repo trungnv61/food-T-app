@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Cryptography;
 
 namespace WebFood.Areas.Admin.Controllers
 {
@@ -15,29 +16,20 @@ namespace WebFood.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Login()
+     public ActionResult DangNhap()
         {
             return View();
         }
 
-        public ActionResult QuanLyTaiKhoan()
+
+      public ActionResult DangKy()
         {
             return View();
         }
 
-        public ActionResult QuanLyDonHang()
-        {
-            return View();
-        }
 
-        public ActionResult QuanLyThucPham()
-        {
-            return View();
-        }
+        // Write Logic Here
 
-        public ActionResult DangKy()
-        {
-            return View();
-        }
+
     }
 }
