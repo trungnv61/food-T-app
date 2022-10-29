@@ -16,16 +16,7 @@ namespace WebFood.Areas.Admin.Controllers
         }
 
 
-     public ActionResult DangNhap()
-        {
-            return View();
-        }
-
-
-      public ActionResult DangKy()
-        {
-            return View();
-        }
+   
 
 
         // Write Logic Here
