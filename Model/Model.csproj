@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B95F32CF-6635-4589-8835-FBDAD778E396}</ProjectGuid>
+    <ProjectGuid>{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
@@ -55,7 +55,14 @@
   <ItemGroup>
     <Compile Include="AccountModel.cs" />
     <Compile Include="Framework\Account.cs" />
+    <Compile Include="Framework\Cart.cs" />
+    <Compile Include="Framework\Category.cs" />
+    <Compile Include="Framework\Contact.cs" />
     <Compile Include="Framework\FoodOnlineDbContext.cs" />
+    <Compile Include="Framework\Order.cs" />
+    <Compile Include="Framework\Payment.cs" />
+    <Compile Include="Framework\Product.cs" />
+    <Compile Include="Framework\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

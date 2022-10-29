@@ -8,7 +8,7 @@ using Model.Framework;
 
 namespace Model
 {
-   public class AccountModel
+    public class AccountModel
     {
         private FoodOnlineDbContext context = null;
         public AccountModel()

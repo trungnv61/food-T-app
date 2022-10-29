@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFood", "WebFood\WebFood.csproj", "{437097A0-9FA6-47E7-8692-B87FBB95F549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{B95F32CF-6635-4589-8835-FBDAD778E396}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{437097A0-9FA6-47E7-8692-B87FBB95F549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437097A0-9FA6-47E7-8692-B87FBB95F549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437097A0-9FA6-47E7-8692-B87FBB95F549}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B95F32CF-6635-4589-8835-FBDAD778E396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B95F32CF-6635-4589-8835-FBDAD778E396}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B95F32CF-6635-4589-8835-FBDAD778E396}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B95F32CF-6635-4589-8835-FBDAD778E396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FFB0E3-B1A6-444D-BB50-5158FA00F60F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
