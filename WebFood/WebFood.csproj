@@ -123,8 +123,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Code\SessionHelper.cs" />
     <Compile Include="Areas\Admin\Code\UserSession.cs" />
+    <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DangNhap.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyDonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyTaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyThucPhamController.cs" />
@@ -240,7 +240,6 @@
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.ttf" />
     <Content Include="Assets\Admin\icon\themify-icons\fonts\themify.woff" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\DangKy.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyThucPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />

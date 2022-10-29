@@ -20,7 +20,7 @@ namespace WebFood.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginModel model) 
+        public ActionResult Index(LoginModel model)
         {
             var result = new AccountModel().Login(model.UserName, model.Password);
             if (result && ModelState.IsValid)
