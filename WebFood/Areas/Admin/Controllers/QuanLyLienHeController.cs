@@ -8,20 +8,20 @@ using Model.Dao;
 
 namespace WebFood.Areas.Admin.Controllers
 {
-    public class QuanLyThucPhamController : Controller
+    public class QuanLyLienHeController : Controller
     {
-        // GET: Admin/QuanLyThucPham
+        // GET: Admin/QuanLyLienHe
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Create(Product product)
+        public ActionResult Create(Contact contact)
         {
             if (ModelState.IsValid)
             {
-                var dao = new ProductDao();
-                long id = dao.Insert(product);
+                var dao = new ContactDao();
+                long id = dao.Insert(contact);
                 if (id > 0)
                 {
 
@@ -30,7 +30,7 @@ namespace WebFood.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Them product thanh cong");
+                    ModelState.AddModelError("", "Them contact thanh cong");
                 }
             }
             return View("Index");

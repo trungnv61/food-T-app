@@ -54,6 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountModel.cs" />
+    <Compile Include="Dao\CategoryDao.cs" />
+    <Compile Include="Dao\ContactDao.cs" />
+    <Compile Include="Dao\OrderDao.cs" />
+    <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="Framework\Account.cs" />
     <Compile Include="Framework\Cart.cs" />

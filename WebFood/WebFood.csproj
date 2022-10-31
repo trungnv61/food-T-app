@@ -133,6 +133,7 @@
     <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyDonHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyLienHeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyTaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyThucPhamController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
@@ -251,6 +252,7 @@
     <Content Include="Areas\Admin\Views\DangNhap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyLienHe\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

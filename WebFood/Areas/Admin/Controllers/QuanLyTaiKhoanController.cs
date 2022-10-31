@@ -24,7 +24,9 @@ namespace WebFood.Areas.Admin.Controllers
             long id = dao.Insert(user);
             if (id > 0)
             {
+
                 return RedirectToAction("Index", "Home");
+                
             } else
             {
                 ModelState.AddModelError("", "Them user thanh cong");
