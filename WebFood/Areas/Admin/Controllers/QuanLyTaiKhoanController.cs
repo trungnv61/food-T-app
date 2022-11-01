@@ -44,7 +44,7 @@ namespace WebFood.Areas.Admin.Controllers
         // GET
         public ActionResult Create()
         {
-            return View("Index");
+            return View();
         }
 
         [HttpPost]
