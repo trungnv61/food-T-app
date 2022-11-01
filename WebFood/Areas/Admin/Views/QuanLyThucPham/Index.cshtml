@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-block">
                     <h4 class="sub-title">Tao thuc pham</h4>
-                    @using (Html.BeginForm("Create", "QuanLyThucPham", FormMethod.Post))
+                    @using (Html.BeginForm("Create", "QuanLyThucPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -58,7 +58,8 @@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="file" name="Picture" />
+                                    @*@Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })*@
                                     @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
                                 </div>
                             </div>

@@ -15,23 +15,37 @@ namespace WebFood.Areas.Admin.Controllers
         {
             return View();
         }
+        // GET
+        public ActionResult Create()
+        {           
+            return View("Index");
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Product product)
         {
             if (ModelState.IsValid)
             {
                 var dao = new ProductDao();
-                long id = dao.Insert(product);
-                if (id > 0)
+                //if (id > 0)
+                //{
+                HttpPostedFileBase file = Request.Files["Picture"];
+                if (file != null && file.FileName != "")
                 {
-
-                    return RedirectToAction("Index", "Home");
-
+                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
+                    string filePath = serverPath + "/" + file.FileName;
+                    file.SaveAs(filePath);
+                    product.ImageUrl = file.FileName;
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Them product thanh cong");
-                }
+                var id = dao.Insert(product);
+                return RedirectToAction("Index", "Home");
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them product thanh cong");
+                //}
             }
             return View("Index");
         }
