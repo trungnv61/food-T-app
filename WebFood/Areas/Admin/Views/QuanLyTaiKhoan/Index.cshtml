@@ -1,4 +1,5 @@
-﻿
+﻿@model  PagedList.IPagedList<Model.Framework.User>
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
@@ -6,5 +7,49 @@
 }
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h3 style="
+    margin: 34px;
+">Quản lý người dùng</h3>
 
-<h1>Quan ly nguoi dung</h1>
+<div class="card">
+    <div class="card-header">
+        <a href="@Url.Action("Create", "QuanLyTaiKhoan")">
+        <i class="fa fa-user fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
+        </a>
+        <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li> </ul></div>
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        @*<th>ChucNang</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <th scope="row">@item.UserId</th>
+                        <td>@item.UserName</td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
+                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
+                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
+        </div>
+    </div>
+</div>

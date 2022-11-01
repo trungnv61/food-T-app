@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Framework;
 using Model.Dao;
+using PagedList;
 
 namespace WebFood.Areas.Admin.Controllers
 {
@@ -37,9 +38,11 @@ namespace WebFood.Areas.Admin.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            return View();
+            var dao = new UserDao();
+            var model = dao.ListAllPaging(page, pageSize);
+            return View(model);
         }
         // GET
         public ActionResult Create()
@@ -65,7 +68,7 @@ namespace WebFood.Areas.Admin.Controllers
                     user.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(user);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "QuanLyTaiKhoan");
 
                 //}
                 //else
