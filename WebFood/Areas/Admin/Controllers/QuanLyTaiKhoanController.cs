@@ -50,6 +50,40 @@ namespace WebFood.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+                //if (id > 0)
+                //{
+                HttpPostedFileBase file = Request.Files["Picture"];
+                if (file != null && file.FileName != "")
+                {
+                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
+                    string filePath = serverPath + "/" + file.FileName;
+                    file.SaveAs(filePath);
+                    user.ImageUrl = file.FileName;
+                }
+                bool result = dao.Update(user);
+                return RedirectToAction("Index", "QuanLyTaiKhoan");
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them product thanh cong");
+                //}
+            }
+            return View("Index");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(User user)
@@ -77,6 +111,12 @@ namespace WebFood.Areas.Admin.Controllers
                 //}
             }
             return View("Index");
+        }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new UserDao().Delete(id);
+            return RedirectToAction("Index", "QuanLyTaiKhoan");
         }
     }
 }

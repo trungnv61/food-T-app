@@ -17,10 +17,10 @@
                 <div class="card-header">
                 </div>
                 <div class="card-block">
-                    <h4 class="sub-title">Tạo người dùng</h4>
+                    <h4 class="sub-title">Cập nhật người dùng</h4>
 
                     @* @using (Html.BeginForm("Create", "QuanLyTaiKhoan", FormMethod.Post), new { })*@
-                    @using (Html.BeginForm("Create", "QuanLyTaiKhoan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Edit", "QuanLyTaiKhoan", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <h4>User</h4>
@@ -103,7 +103,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" style="margin-left: 600px;" />
+                                <input type="submit" value="Update" class="btn btn-default" style="margin-left: 600px;" />
                             </div>
                         </div>
 

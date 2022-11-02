@@ -1,18 +1,20 @@
 ﻿@model  PagedList.IPagedList<Model.Framework.User>
 @using PagedList.Mvc
 
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h3 style="
     margin: 34px;
     font-weight: bold;
     text-align: center;
-">Quản lý người dùng</h3>
+">
+    Quản lý người dùng
+</h3>
 
 <div class="card">
     <div class="card-header">
@@ -36,15 +38,22 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
+                    <tr id="row_@item.UserId">
                         <th scope="row">@item.UserId</th>
-                        <td>@item.UserName</td>
                         <td>@item.Name</td>
+                        <td>@item.UserName</td>
                         <td>@item.Email</td>
                         @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
-                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
-                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
-                        <td><a href="/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
+                        <td><a href="/Admin/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td><i class="fa fa-trash" style="color: #D6271B"></i>
+                        @Ajax.ActionLink("!", "Delete", new { @id = item.UserId }, 
+                        new AjaxOptions { Confirm = "Bạn có muốn xóa bản ghi này không ?", 
+                        OnComplete = "$('#row_"+ @item.UserId+"').remove()",
+                        HttpMethod = "Delete"
+                   })
+                        </td>
+@*                        <td><a href="/Admin/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>*@
+                        <td><a href="/Admin/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
                     </tr>
                     }
 
