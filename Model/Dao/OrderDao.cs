@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Framework;
+using PagedList;
 
 namespace Model.Dao
 {
@@ -20,6 +21,11 @@ namespace Model.Dao
             db.Orders.Add(entity);
             db.SaveChanges();
             return entity.OrderDetailsId;
+        }
+
+        public IEnumerable<Order> ListAllPaging(int page, int pageSize)
+        {
+            return db.Orders.OrderByDescending(x => x.OrderDetailsId).ToPagedList(page, pageSize);
         }
     }
 }

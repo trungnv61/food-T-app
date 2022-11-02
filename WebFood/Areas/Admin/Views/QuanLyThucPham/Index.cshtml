@@ -1,108 +1,59 @@
-﻿@model Model.Framework.Product
+﻿@model  PagedList.IPagedList<Model.Framework.Product>
+@using PagedList.Mvc
+
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h3 style="
+    margin: 34px;
+    font-weight: bold;
+    text-align: center;
+">
+    Quản lý thực phẩm
+</h3>
 
-<div class="page-body">
-    <div class="row">
-        <div class="col-sm-12">
-            <!-- Basic Form Inputs card start -->
-            <div class="card">
-                <div class="card-header">
-                </div>
-                <div class="card-block">
-                    <h4 class="sub-title">Tao thuc pham</h4>
-                    @using (Html.BeginForm("Create", "QuanLyThucPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="card">
+    <div class="card-header">
+        <a href="@Url.Action("Create", "QuanLyThucPham")">
+            <i class="fa fa-user-plus fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
+        </a>
+        <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li> </ul></div>
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        @*<th>ChucNang</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-horizontal">
-                            <h4>Product</h4>
-                            <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    <input type="file" name="Picture" />
-                                    @*@Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })*@
-                                    @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Catalog Name</label>
-                                <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewBag.Catalog, new { @class = "form-control" }) 
-                                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" style="margin-left: 600px;"  />
-                                </div>
-                            </div>
-                        </div>
+                        <tr>
+                            <th scope="row">@item.ProductId</th>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            <td>@item.Quantity</td>
+                            @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
+                            <td><a href="/QuanLyTaiKhoan/Edit/@item.ProductId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                            <td><a href="/QuanLyTaiKhoan/Edit/@item.ProductId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
+                            <td><a href="/QuanLyTaiKhoan/Edit/@item.ProductId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
+                        </tr>
                     }
 
-                </div>
-            </div>
+
+                </tbody>
+            </table>
+            @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
         </div>
     </div>
-</div>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

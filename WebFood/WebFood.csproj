@@ -263,6 +263,8 @@
     <Content Include="Areas\Admin\Views\QuanLyLienHe\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyHangHoa\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyThucPham\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

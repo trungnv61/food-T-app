@@ -5,22 +5,33 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Framework;
 using Model.Dao;
+using PagedList;
 
 namespace WebFood.Areas.Admin.Controllers
 {
     public class QuanLyThucPhamController : Controller
     {
         // GET: Admin/QuanLyThucPham
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
+            var dao = new ProductDao();
+            var model = dao.ListAllPaging(page, pageSize);
             FoodOnlineDbContext db = new FoodOnlineDbContext();
             ViewBag.Catalog = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
-            return View();
+            return View(model);
         }
+
+
+        //public ActionResult Index(int page = 1, int pageSize = 10)
+        //{
+        //    var dao = new UserDao();
+        //    var model = dao.ListAllPaging(page, pageSize);
+        //    return View(model);
+        //}
         // GET
         public ActionResult Create()
         {           
-            return View("Index");
+            return View();
         }
 
         [HttpPost]
@@ -41,7 +52,7 @@ namespace WebFood.Areas.Admin.Controllers
                     product.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(product);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "QuanLyThucPham");
 
                 //}
                 //else
