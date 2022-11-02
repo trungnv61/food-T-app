@@ -12,15 +12,17 @@ namespace WebFood.Areas.Admin.Controllers
     public class QuanLyHangHoaController : Controller
     {
         // GET: Admin/QuanLyHangHoa
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            return View();
+            var dao = new CategoryDao();
+            var model = dao.ListAllPaging(page, pageSize);
+            return View(model);
         }
 
         // GET
         public ActionResult Create()
         {
-            return View("Index");
+            return View();
         }
 
         [HttpPost]
@@ -41,7 +43,7 @@ namespace WebFood.Areas.Admin.Controllers
                     category.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(category);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "QuanLyHangHoa");
 
                 //}
                 //else

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Framework;
+using PagedList;
 
 namespace Model.Dao
 {
@@ -20,6 +21,11 @@ namespace Model.Dao
             db.Categories.Add(entity);
             db.SaveChanges();
             return entity.CategoryId;
+        }
+
+        public IEnumerable<Category> ListAllPaging(int page, int pageSize)
+        {
+            return db.Categories.OrderByDescending(x => x.CategoryId).ToPagedList(page, pageSize);
         }
     }
 }
