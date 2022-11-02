@@ -5,17 +5,28 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Framework;
 using Model.Dao;
+using PagedList;
 
 namespace WebFood.Areas.Admin.Controllers
 {
     public class QuanLyLienHeController : Controller
     {
         // GET: Admin/QuanLyLienHe
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
+        {
+            var dao = new ContactDao();
+            var model = dao.ListAllPaging(page, pageSize);
+            return View(model);
+        }
+
+
+        public ActionResult Create()
         {
             return View();
         }
 
+
+        [HttpPost]
         public ActionResult Create(Contact contact)
         {
             if (ModelState.IsValid)
@@ -25,7 +36,7 @@ namespace WebFood.Areas.Admin.Controllers
                 if (id > 0)
                 {
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "QuanLyLienHe");
 
                 }
                 else
