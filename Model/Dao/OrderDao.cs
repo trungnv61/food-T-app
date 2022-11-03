@@ -23,9 +23,14 @@ namespace Model.Dao
             return entity.OrderDetailsId;
         }
 
-        public IEnumerable<Order> ListAllPaging(int page, int pageSize)
+        public IEnumerable<Order> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.Orders.OrderByDescending(x => x.OrderDetailsId).ToPagedList(page, pageSize);
+            IQueryable<Order> model = db.Orders;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.OrderNo.Contains(searchString) || x.Status.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.OrderDetailsId).ToPagedList(page, pageSize);
         }
     }
 }

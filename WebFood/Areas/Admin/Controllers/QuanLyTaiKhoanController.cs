@@ -73,14 +73,8 @@ namespace WebFood.Areas.Admin.Controllers
                     file.SaveAs(filePath);
                     user.ImageUrl = file.FileName;
                 }
-                bool result = dao.Update(user);
+                var result = dao.Update(user);
                 return RedirectToAction("Index", "QuanLyTaiKhoan");
-
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", "Them product thanh cong");
-                //}
             }
             return View("Index");
         }
@@ -129,9 +123,12 @@ namespace WebFood.Areas.Admin.Controllers
         {
             var dao = new UserDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
-            ViewBag.SearchString = searchString;
             return View(model);
         }
-
+        public ActionResult Detail(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }
     }
 }
