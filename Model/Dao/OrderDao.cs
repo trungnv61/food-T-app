@@ -32,5 +32,26 @@ namespace Model.Dao
             }
             return model.OrderByDescending(x => x.OrderDetailsId).ToPagedList(page, pageSize);
         }
+
+        // delete
+        public Order ViewDetail(int id)
+        {
+            return db.Orders.Find(id);
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var order = db.Orders.Find(id);
+                db.Orders.Remove(order);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

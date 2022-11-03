@@ -33,5 +33,27 @@ namespace Model.Dao
             }
             return model.OrderByDescending(x => x.CategoryId).ToPagedList(page, pageSize);
         }
+
+
+        // delete
+        public Category ViewDetail(int id)
+        {
+            return db.Categories.Find(id);
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var category = db.Categories.Find(id);
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

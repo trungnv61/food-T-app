@@ -47,5 +47,19 @@ namespace WebFood.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+
+        // delete
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new ContactDao().Delete(id);
+            return RedirectToAction("Index", "QuanLyLienHe");
+        }
+        public ActionResult Detail(int id)
+        {
+            var contact = new ContactDao().ViewDetail(id);
+            return View(contact);
+        }
     }
 }

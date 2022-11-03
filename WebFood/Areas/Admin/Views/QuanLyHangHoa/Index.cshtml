@@ -44,19 +44,27 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <th scope="row">@item.CategoryId</th>
-                            <td>@item.Name</td>
-                            <td>@item.CreatedDate</td>
-                            <td>
-                                <img src="~/Hinh/@item.ImageUrl" class="img-thumbnail"/>
-                            </td>
-                            @*<td>@item.ImageUrl</td>*@
-                            @*<td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId">Sua</a></td>*@
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
-                        </tr>
+                    <tr id="row_@item.CategoryId">
+                        <th scope="row">@item.CategoryId</th>
+                        <td>@item.Name</td>
+                        <td>@item.CreatedDate</td>
+                        <td>
+                            <img src="~/Hinh/@item.ImageUrl" class="img-thumbnail" />
+                        </td>
+                        @*<td>@item.ImageUrl</td>*@
+                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId">Sua</a></td>*@
+                        <td><a href="/QuanLyHangHoa/Edit/@item.CategoryId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td>
+                            <i class="fa fa-trash" style="color: #D6271B"></i>
+                            @Ajax.ActionLink("!", "Delete", new { @id = item.CategoryId },
+                            new AjaxOptions
+                                 {
+                                     Confirm = "Bạn có muốn xóa bản ghi này không ?",
+                            OnComplete = "$('#row_" + @item.CategoryId + "').remove()",
+                            HttpMethod = "Delete"
+                       })
+                        </td>
+                    </tr>
                     }
 
 

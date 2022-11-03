@@ -46,16 +46,24 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <th scope="row">@item.OrderDetailsId</th>
-                            <td>@item.OrderNo</td>
-                            <td>@item.Quantity</td>
-                            <td>@item.Status</td>
-                            @*<td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId">Sua</a></td>*@
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
-                            <td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
-                        </tr>
+                    <tr id="row_@item.OrderDetailsId">
+                        <th scope="row">@item.OrderDetailsId</th>
+                        <td>@item.OrderNo</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Status</td>
+                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId">Sua</a></td>*@
+                        <td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td>
+                            <i class="fa fa-trash" style="color: #D6271B"></i>
+                            @Ajax.ActionLink("!", "Delete", new { @id = item.OrderDetailsId },
+                            new AjaxOptions
+                                 {
+                                     Confirm = "Bạn có muốn xóa bản ghi này không ?",
+                            OnComplete = "$('#row_" + @item.OrderDetailsId + "').remove()",
+                            HttpMethod = "Delete"
+                       })
+                        </td>
+                    </tr>
                     }
 
 

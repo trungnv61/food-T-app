@@ -32,5 +32,27 @@ namespace Model.Dao
             }
             return model.OrderByDescending(x => x.ContactId).ToPagedList(page, pageSize);
         }
+
+
+        // delete
+        public Contact ViewDetail(int id)
+        {
+            return db.Contacts.Find(id);
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var contact = db.Contacts.Find(id);
+                db.Contacts.Remove(contact);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }
