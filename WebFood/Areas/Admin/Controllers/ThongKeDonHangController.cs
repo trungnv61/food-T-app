@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
+using Rotativa;
 using PagedList;
 
 
@@ -18,6 +19,15 @@ namespace WebFood.Areas.Admin.Controllers
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
+        }
+
+        public ActionResult ExportPDF()
+        {
+            return new ActionAsPdf("Index")
+            {
+                FileName = Server.MapPath("~/Hinh/ThongKeDonHang.pdf")
+            };
+
         }
     }
 }
