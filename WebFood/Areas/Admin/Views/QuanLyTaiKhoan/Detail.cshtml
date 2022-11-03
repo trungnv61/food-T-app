@@ -9,13 +9,7 @@
 }
 
 
-<h3 style="
-    margin: 34px;
-    font-weight: bold;
-    text-align: center;
-">
-    Quản lý người dùng
-</h3>
+
 
 <div class="card">
     <div class="card-block table-border-style">
@@ -38,21 +32,27 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr id="row_@item.UserId">
-                        <th scope="row">@item.UserId</th>
-                        <td>@item.Name</td>
-                        <td>@item.UserName</td>
-                        <td>@item.Mobile</td>
-                        <td>@item.Email</td>
-                        <td>@item.Address</td>
-                        <td>@item.PostCode</td>
-                        <td>@item.ImageUrl</td>
-                        <td>@item.CreatedDate</td>
-                    </tr>
+                        <tr id="row_@item.UserId">
+                            <th scope="row">@item.UserId</th>
+                            <td>@item.Name</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Mobile</td>
+                            <td>@item.Email</td>
+                            <td>@item.Address</td>
+                            <td>@item.PostCode</td>
+                            <td>@item.ImageUrl</td>
+                            <td>@item.CreatedDate</td>
+                        </tr>
                     }
                 </tbody>
             </table>
             @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
         </div>
     </div>
+</div>
+
+<div style="
+    margin-left: 20px;
+">
+    @Html.ActionLink("Back to List", "Index")
 </div>

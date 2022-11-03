@@ -124,10 +124,14 @@ namespace WebFood.Areas.Admin.Controllers
         }
 
         // xem chi tiet
-        public ActionResult Detail(int id)
+        [HttpGet]
+        public ActionResult Detail(string searchString, int page = 1, int pageSize = 10)
         {
-            var user = new UserDao().ViewDetail(id);
-            return View(user);
+            var dao = new UserDao();
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
+
     }
 }

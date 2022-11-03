@@ -36,21 +36,21 @@ namespace Model.Dao
         }
 
 
-   
+
         // cap nhat
         public bool Update(User entity)
         {
             try
             {
-            var user = db.Users.Find(entity.UserId);
-            user.Name = entity.Name;
-            user.ImageUrl = entity.ImageUrl;
-            user.Address = user.Address;
-            user.Mobile = user.Mobile;
-            db.SaveChanges();
-            return true;
-            } 
-            catch (Exception EX)
+                var user = db.Users.Find(entity.UserId);
+                user.Name = entity.Name;
+                user.ImageUrl = entity.ImageUrl;
+                user.Address = user.Address;
+                user.Mobile = user.Mobile;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception Ex)
             {
                 return false;
             }
