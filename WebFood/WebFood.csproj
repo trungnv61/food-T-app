@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\QuanLyThucPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeDonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeTaiKhoanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThongKeThucPhamController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -273,6 +274,8 @@
     <Content Include="Areas\Admin\Views\QuanLyThucPham\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\ThongKeTaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongKeDonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongKeThucPham\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -300,7 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\ThongKeDonHang\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Hinh\" />
     <Folder Include="Models\" />

@@ -6,15 +6,14 @@ using System.Web.Mvc;
 using Model.Dao;
 using PagedList;
 
-
 namespace WebFood.Areas.Admin.Controllers
 {
-    public class ThongKeDonHangController : Controller
+    public class ThongKeThucPhamController : Controller
     {
-        // GET: Admin/ThongKeDonHang
+        // GET: Admin/ThongKeThucPham
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
-            var dao = new OrderDao();
+            var dao = new ProductDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
