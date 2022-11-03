@@ -58,6 +58,8 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        // delete
         public User ViewDetail(int id)
         {
             return db.Users.Find(id);
@@ -67,7 +69,7 @@ namespace Model.Dao
         {
             try
             {
-           var user =  db.Users.Find(id);
+            var user =  db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
             return true;

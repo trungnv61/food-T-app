@@ -12,10 +12,11 @@ namespace WebFood.Areas.Admin.Controllers
     public class QuanLyLienHeController : Controller
     {
         // GET: Admin/QuanLyLienHe
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new ContactDao();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
             return View(model);
         }
 

@@ -23,9 +23,14 @@ namespace Model.Dao
             return entity.ContactId;
         }
 
-        public IEnumerable<Contact> ListAllPaging(int page, int pageSize)
+        public IEnumerable<Contact> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.Contacts.OrderByDescending(x => x.ContactId).ToPagedList(page, pageSize);
+            IQueryable<Contact> model = db.Contacts;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString) || x.Subject.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.ContactId).ToPagedList(page, pageSize);
         }
     }
 }

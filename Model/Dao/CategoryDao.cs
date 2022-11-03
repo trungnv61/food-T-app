@@ -23,9 +23,15 @@ namespace Model.Dao
             return entity.CategoryId;
         }
 
-        public IEnumerable<Category> ListAllPaging(int page, int pageSize)
+        public IEnumerable<Category> ListAllPaging(string searchString, int page, int pageSize)
         {
-            return db.Categories.OrderByDescending(x => x.CategoryId).ToPagedList(page, pageSize);
+
+            IQueryable<Category> model = db.Categories;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.CategoryId).ToPagedList(page, pageSize);
         }
     }
 }

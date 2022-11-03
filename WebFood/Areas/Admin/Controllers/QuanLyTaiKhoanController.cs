@@ -116,6 +116,11 @@ namespace WebFood.Areas.Admin.Controllers
             new UserDao().Delete(id);
             return RedirectToAction("Index", "QuanLyTaiKhoan");
         }
+        public ActionResult Detail(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }
 
         // xem chi tiet
         [HttpGet]
@@ -124,11 +129,6 @@ namespace WebFood.Areas.Admin.Controllers
             var dao = new UserDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             return View(model);
-        }
-        public ActionResult Detail(int id)
-        {
-            var user = new UserDao().ViewDetail(id);
-            return View(user);
         }
     }
 }

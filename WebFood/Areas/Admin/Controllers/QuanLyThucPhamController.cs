@@ -13,12 +13,13 @@ namespace WebFood.Areas.Admin.Controllers
     public class QuanLyThucPhamController : Controller
     {
         // GET: Admin/QuanLyThucPham
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new ProductDao();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString ,page, pageSize);
             FoodOnlineDbContext db = new FoodOnlineDbContext();
             ViewBag.Catalog = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
+            ViewBag.SearchString = searchString;
             return View(model);
         }
 
@@ -101,5 +102,20 @@ namespace WebFood.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+        // xoa
+        // delete
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new ProductDao().Delete(id);
+            return RedirectToAction("Index", "QuanLyThucPham");
+        }
+        public ActionResult Detail(int id)
+        {
+            var product = new ProductDao().ViewDetail(id);
+            return View(product);
+        }
+
     }
 }

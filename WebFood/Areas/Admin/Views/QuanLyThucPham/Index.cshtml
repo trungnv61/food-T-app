@@ -21,6 +21,13 @@
         <a href="@Url.Action("Create", "QuanLyThucPham")">
             <i class="fa fa-user-plus fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
         </a>
+        <div class="card-header-center" style=" margin-top: -34px;">
+            @using (Html.BeginForm("Index", "QuanLyThucPham", FormMethod.Get, new { @style = "display: flex;" }))
+            {
+                <input type="text" value="@ViewBag.SearchString" name="searchString" style="margin-left: 527px; width: 272px; height: 30px" />
+                <button type="submit" style="margin-left: 26px;border-radius: 15px;background-color: black;color: white;width: 98px;height: 34px; margin-top: -2px">Tim kiem</button>
+            }
+        </div>
         <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li> </ul></div>
     </div>
     <div class="card-block table-border-style">
@@ -38,16 +45,25 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <th scope="row">@item.ProductId</th>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            <td>@item.Quantity</td>
-                            @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
-                            <td><a href="/Admin/QuanLyThucPham/Edit/@item.ProductId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
-                            <td><a href="/Admin/QuanLyThucPham/Edit/@item.ProductId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>
-                            <td><a href="/Admin/QuanLyThucPham/Edit/@item.ProductId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
-                        </tr>
+                    <tr id="row_@item.ProductId">
+                        <th scope="row">@item.ProductId</th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Quantity</td>
+                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
+                        <td><a href="/Admin/QuanLyThucPham/Edit/@item.ProductId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td>
+                            <i class="fa fa-trash" style="color: #D6271B"></i>
+                            @Ajax.ActionLink("!", "Delete", new { @id = item.ProductId },
+                            new AjaxOptions
+                                 {
+                                     Confirm = "Bạn có muốn xóa bản ghi này không ?",
+                            OnComplete = "$('#row_" + @item.ProductId + "').remove()",
+                            HttpMethod = "Delete"
+                       })
+                        </td>
+                        <td><a href="/Admin/QuanLyThucPham/Edit/@item.ProductId"><i class="fa fa-eye" style="color: #8E44AD"></i></a></td>
+                    </tr>
                     }
 
 
@@ -56,4 +72,11 @@
             @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
         </div>
     </div>
+</div>
+
+
+<div style="
+    margin-left: 20px;
+">
+    @Html.ActionLink("Back to List", "Index")
 </div>
