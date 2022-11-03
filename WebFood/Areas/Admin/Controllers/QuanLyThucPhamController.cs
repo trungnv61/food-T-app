@@ -7,6 +7,7 @@ using Model.Framework;
 using Model.Dao;
 using PagedList;
 
+
 namespace WebFood.Areas.Admin.Controllers
 {
     public class QuanLyThucPhamController : Controller
@@ -30,9 +31,10 @@ namespace WebFood.Areas.Admin.Controllers
         //}
         // GET
         public ActionResult Create()
-        {           
+        {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -53,6 +55,43 @@ namespace WebFood.Areas.Admin.Controllers
                 }
                 var id = dao.Insert(product);
                 return RedirectToAction("Index", "QuanLyThucPham");
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them product thanh cong");
+                //}
+            }
+            return View("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var product = new ProductDao().ViewDetail(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new ProductDao();
+                //if (id > 0)
+                //{
+                HttpPostedFileBase file = Request.Files["Picture"];
+                if (file != null && file.FileName != "")
+                {
+                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
+                    string filePath = serverPath + "/" + file.FileName;
+                    file.SaveAs(filePath);
+                    product.ImageUrl = file.FileName;
+                }
+                var result = dao.Update(product);
+                if (result)
+                {
+                return RedirectToAction("Index", "QuanLyThucPham");
+                }
 
                 //}
                 //else
