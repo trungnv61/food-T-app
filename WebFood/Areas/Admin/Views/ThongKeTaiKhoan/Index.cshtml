@@ -15,26 +15,21 @@
 <div class="card">
     <div class="card-header">
         <div>
-            <a href="@Url.Action("Create", "QuanLyTaiKhoan")">
+            <a href="@Url.Action()">
                 <i class="fa fa-file-excel fa-2x" style="color: green; margin-left: 32px;"> Excel</i>
             </a>
 
-            <a href="@Url.Action("Create", "QuanLyTaiKhoan")">
+            <a href="@Url.Action("ExportPDF", "ThongKeTaiKhoan")">
                 <i class="fa-solid fa-file-pdf fa-2x" style="color: #FF1B0E; margin-left: 32px;"> PDF</i>
             </a>
 
-            <a href="@Url.Action("Create", "QuanLyTaiKhoan")">
+            <a href="@Url.Action("ExportWorld", "ThongKeTaiKhoan")">
                 <i class="fa-solid fa-file-word fa-2x" style="color: #146ebe; margin-left: 32px;"> Word</i>
             </a>
+
         </div>
      
-        <div class="card-header-center" style=" margin-top: -34px;">
-            @using (Html.BeginForm("Index", "QuanLyTaiKhoan", FormMethod.Get, new { @style = "display: flex;" }))
-            {
-                <input type="text" value="@ViewBag.SearchString" name="searchString" style="margin-left: 527px; width: 272px; height: 30px" />
-                <button type="submit" style="margin-left: 26px;border-radius: 15px;background-color: black;color: white;width: 98px;height: 34px; margin-top: -2px">Tim kiem</button>
-            }
-        </div>
+       
         <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li> </ul></div>
     </div>
     <div class="card-block table-border-style">
@@ -75,4 +70,3 @@
         </div>
     </div>
 </div>
-
