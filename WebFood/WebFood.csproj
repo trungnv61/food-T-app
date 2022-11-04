@@ -270,7 +270,6 @@
     <Content Include="Areas\Admin\Views\QuanLyThucPham\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DangNhap\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\QuanLyLienHe\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyHangHoa\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTaiKhoan\Create.cshtml" />
@@ -289,6 +288,7 @@
     <Content Include="Areas\Admin\Views\ThongKeHangHoa\Index.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="Areas\Admin\Views\QuanLyLienHe\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
