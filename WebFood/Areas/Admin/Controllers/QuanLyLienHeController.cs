@@ -61,5 +61,35 @@ namespace WebFood.Areas.Admin.Controllers
             var contact = new ContactDao().ViewDetail(id);
             return View(contact);
         }
+
+
+
+        //edit
+        public ActionResult Edit(int id)
+        {
+            var contact = new ContactDao().ViewDetail(id);
+            return View(contact);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new ContactDao();
+                var id = dao.Update(contact);
+                if (id > 0)
+                {
+
+                    return RedirectToAction("Index", "QuanLyLienHe");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Them contact thanh cong");
+                }
+            }
+            return View("Index");
+        }
     }
 }

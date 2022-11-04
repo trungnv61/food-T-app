@@ -23,6 +23,14 @@ namespace Model.Dao
             return entity.ContactId;
         }
 
+        public long Update(Contact entity)
+        {
+            var contact = db.Contacts.Find(entity.ContactId);
+            contact = db.Contacts.Add(entity);
+            db.SaveChanges();
+            return entity.ContactId;
+        }
+
         public IEnumerable<Contact> ListAllPaging(string searchString, int page, int pageSize)
         {
             IQueryable<Contact> model = db.Contacts;

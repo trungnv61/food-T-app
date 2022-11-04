@@ -35,29 +35,39 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.UserId).ToPagedList(page, pageSize);
         }
 
-       
 
+
+
+        public long Insert2(User entity)
+        {
+            var user = db.Users.Find(entity.UserId);
+            user = db.Users.Add(entity);
+            db.SaveChanges();
+            return entity.UserId;
+        }
 
 
 
         // cap nhat
-        public bool Update(User entity)
-        {
-            try
-            {
-                var user = db.Users.Find(entity.UserId);
-                user.Name = entity.Name;
-                user.ImageUrl = entity.ImageUrl;
-                user.Address = user.Address;
-                user.Mobile = user.Mobile;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception Ex)
-            {
-                return false;
-            }
-        }
+        //public bool Update(User entity)
+        //{
+        //    try
+        //    {
+        //        var user = db.Users.Find(entity.UserId);
+        //        user.Name = entity.Name;
+        //        user.ImageUrl = entity.ImageUrl;
+        //        user.Address = user.Address;
+        //        user.Mobile = user.Mobile;
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (NullReferenceException e)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+      
 
         // delete
         public User ViewDetail(int id)
