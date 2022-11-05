@@ -78,16 +78,16 @@ namespace WebFood.Areas.Admin.Controllers
             {
                 var dao = new ContactDao();
                 var id = dao.Update(contact);
-                if (id > 0)
-                {
+                return RedirectToAction("Index", "QuanLyLienHe");
+                //if (id > 0)
+                //{
 
-                    return RedirectToAction("Index", "QuanLyLienHe");
 
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Them contact thanh cong");
-                }
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them contact thanh cong");
+                //}
             }
             return View("Index");
         }
