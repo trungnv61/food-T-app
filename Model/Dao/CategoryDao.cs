@@ -34,6 +34,25 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.CategoryId).ToPagedList(page, pageSize);
         }
 
+        // update
+        public bool Update(Category entity)
+        {
+            try
+            {
+                var category = db.Categories.Where(value => value.CategoryId == entity.CategoryId).SingleOrDefault();
+                category.Name = entity.Name;
+                category.ImageUrl = entity.ImageUrl;
+                category.IsActive = category.IsActive;
+                category.CreatedDate = category.CreatedDate;
+                db.SaveChanges();
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
+            }
+        }
+
 
         // delete
         public Category ViewDetail(int id)

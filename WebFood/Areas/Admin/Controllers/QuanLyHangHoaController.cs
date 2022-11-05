@@ -67,5 +67,40 @@ namespace WebFood.Areas.Admin.Controllers
             var category = new CategoryDao().ViewDetail(id);
             return View(category);
         }
+
+        // cap nhat
+        public ActionResult Edit(int id)
+        {
+            var category = new CategoryDao().ViewDetail(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new CategoryDao();
+                //if (id > 0)
+                //{
+                HttpPostedFileBase file = Request.Files["Picture"];
+                if (file != null && file.FileName != "")
+                {
+                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
+                    string filePath = serverPath + "/" + file.FileName;
+                    file.SaveAs(filePath);
+                    category.ImageUrl = file.FileName;
+                }
+                var id = dao.Update(category);
+                return RedirectToAction("Index", "QuanLyHangHoa");
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them product thanh cong");
+                //}
+            }
+            return View("Index");
+        }
     }
 }

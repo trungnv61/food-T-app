@@ -53,7 +53,7 @@
                         </td>
                         @*<td>@item.ImageUrl</td>*@
                         @*<td><a href="/QuanLyTaiKhoan/Edit/@item.CategoryId">Sua</a></td>*@
-                        <td><a href="/QuanLyHangHoa/Edit/@item.CategoryId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td><a href="/Admin/QuanLyHangHoa/Edit/@item.CategoryId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
                         <td>
                             <i class="fa fa-trash" style="color: #D6271B"></i>
                             @Ajax.ActionLink("!", "Delete", new { @id = item.CategoryId },
