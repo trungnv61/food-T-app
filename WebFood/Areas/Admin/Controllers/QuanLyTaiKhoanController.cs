@@ -73,7 +73,7 @@ namespace WebFood.Areas.Admin.Controllers
                     file.SaveAs(filePath);
                     user.ImageUrl = file.FileName;
                 }
-                var result = dao.Insert2(user);
+                var result = dao.Update(user);
                 return RedirectToAction("Index", "QuanLyTaiKhoan");
             }
             return View("Index");

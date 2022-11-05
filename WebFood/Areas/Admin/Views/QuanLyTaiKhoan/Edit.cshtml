@@ -4,11 +4,6 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
-
 <div class="page-body">
     <div class="row">
         <div class="col-sm-12">
@@ -19,13 +14,12 @@
                 <div class="card-block">
                     <h4 class="sub-title">Cập nhật người dùng</h4>
 
-                    @* @using (Html.BeginForm("Create", "QuanLyTaiKhoan", FormMethod.Post), new { })*@
                     @using (Html.BeginForm("Edit", "QuanLyTaiKhoan", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         <h4>User</h4>
                         <hr />
-
+                        @Html.HiddenFor(model => model.UserId)
                         <div class="form-group row">
                             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
@@ -50,7 +44,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
@@ -58,7 +51,6 @@
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
 
                         <div class="form-group row">
                             @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "col-sm-2 col-form-label" })

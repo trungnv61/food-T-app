@@ -38,34 +38,34 @@ namespace Model.Dao
 
 
 
-        public long Insert2(User entity)
-        {
-            var user = db.Users.Find(entity.UserId);
-            user = db.Users.Add(entity);
-            db.SaveChanges();
-            return entity.UserId;
-        }
+        //public long Insert2(User entity)
+        //{
+        //    var user = db.Users.Find(entity.UserId);
+        //    user = db.Users.Add(entity);
+        //    db.SaveChanges();
+        //    return entity.UserId;
+        //}
 
 
 
         // cap nhat
-        //public bool Update(User entity)
-        //{
-        //    try
-        //    {
-        //        var user = db.Users.Find(entity.UserId);
-        //        user.Name = entity.Name;
-        //        user.ImageUrl = entity.ImageUrl;
-        //        user.Address = user.Address;
-        //        user.Mobile = user.Mobile;
-        //        db.SaveChanges();
-        //        return true;
-        //    }
-        //    catch (NullReferenceException e)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool Update(User entity)
+        {
+            try
+           {
+                var user = db.Users.Where(value => value.UserId == entity.UserId).SingleOrDefault();
+              user.Name = entity.Name;
+              user.ImageUrl = entity.ImageUrl;
+              user.Address = user.Address;
+              user.Mobile = user.Mobile;
+               db.SaveChanges();
+               return true;
+          }
+         catch (NullReferenceException e)
+         {
+              return false;
+          }
+        }
 
       
 
