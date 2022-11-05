@@ -53,5 +53,23 @@ namespace Model.Dao
                 return false;
             }
         }
+
+
+        public bool Update(Order entity)
+        {
+            try
+            {
+                var order = db.Orders.Where(value => value.OrderDetailsId == entity.OrderDetailsId).SingleOrDefault();
+                order.OrderNo = entity.OrderNo;
+                order.Status = entity.Status;
+              
+                db.SaveChanges();
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -57,5 +57,35 @@ namespace WebFood.Areas.Admin.Controllers
             var order = new OrderDao().ViewDetail(id);
             return View(order);
         }
+
+
+        // edit
+        public ActionResult Edit(int id)
+        {
+            var user = new OrderDao().ViewDetail(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new OrderDao();
+                var id = dao.Update(order);
+                    return RedirectToAction("Index", "QuanLyDonHang");
+                //if (id > 0)
+                //{
+
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them order thanh cong");
+                //}
+            }
+            return View("Index");
+        }
+
     }
 }

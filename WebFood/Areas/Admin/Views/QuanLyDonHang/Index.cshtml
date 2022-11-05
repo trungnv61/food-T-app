@@ -52,7 +52,7 @@
                         <td>@item.Quantity</td>
                         <td>@item.Status</td>
                         @*<td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId">Sua</a></td>*@
-                        <td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                        <td><a href="/Admin/QuanLyDonHang/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
                         <td>
                             <i class="fa fa-trash" style="color: #D6271B"></i>
                             @Ajax.ActionLink("!", "Delete", new { @id = item.OrderDetailsId },

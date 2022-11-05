@@ -290,6 +290,7 @@
     <Content Include="Areas\Admin\Views\QuanLyLienHe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\QuanLyHangHoa\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
