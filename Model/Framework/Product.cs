@@ -27,7 +27,7 @@ namespace Model.Framework
         public int? Quantity { get; set; }
 
         public string ImageUrl { get; set; }
-
+        [Display(Name = "Catagory")]
         public int? CategoryId { get; set; }
 
         public bool? IsActive { get; set; }

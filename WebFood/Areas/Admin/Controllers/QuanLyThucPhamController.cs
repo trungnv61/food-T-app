@@ -30,9 +30,12 @@ namespace WebFood.Areas.Admin.Controllers
         //    var model = dao.ListAllPaging(page, pageSize);
         //    return View(model);
         //}
-        // GET
+
+        // GET QuanLyThucPham/Create
         public ActionResult Create()
         {
+            FoodOnlineDbContext db = new FoodOnlineDbContext();
+            ViewBag.Catalog = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
             return View();
         }
 
