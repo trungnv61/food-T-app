@@ -54,10 +54,10 @@ namespace Model.Dao
             try
            {
                 var user = db.Users.Where(value => value.UserId == entity.UserId).SingleOrDefault();
-              user.Name = entity.Name;
-              user.ImageUrl = entity.ImageUrl;
-              user.Address = user.Address;
-              user.Mobile = user.Mobile;
+               user.Name = entity.Name;
+               user.ImageUrl = entity.ImageUrl;
+               user.Address = user.Address;
+               user.Mobile = user.Mobile;
                db.SaveChanges();
                return true;
           }
