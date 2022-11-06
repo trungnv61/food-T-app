@@ -71,7 +71,9 @@ namespace WebFood.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
+            FoodOnlineDbContext db = new FoodOnlineDbContext();
             var product = new ProductDao().ViewDetail(id);
+            ViewBag.Catalog = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
             return View(product);
         }
 
