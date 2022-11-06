@@ -66,7 +66,7 @@ namespace Model.Dao
             {
                 var product = db.Products.Find(entity.ProductId);
                 product.Name = entity.Name;
-                product.Price = entity.Price;
+                product.Description = entity.Description;
                 product.Quantity = entity.Quantity;
                 db.SaveChanges();
                 return true;
