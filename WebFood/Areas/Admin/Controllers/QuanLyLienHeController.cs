@@ -21,6 +21,23 @@ namespace WebFood.Areas.Admin.Controllers
         }
 
 
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-error";
+            }
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -36,7 +53,7 @@ namespace WebFood.Areas.Admin.Controllers
                 long id = dao.Insert(contact);
                 if (id > 0)
                 {
-
+                    SetAlert("Thêm liên hệ thành cong", "success");
                     return RedirectToAction("Index", "QuanLyLienHe");
 
                 }
@@ -54,6 +71,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new ContactDao().Delete(id);
+            SetAlert("Xóa liên hệ thành cong", "success");
             return RedirectToAction("Index", "QuanLyLienHe");
         }
         public ActionResult Detail(int id)
@@ -78,6 +96,7 @@ namespace WebFood.Areas.Admin.Controllers
             {
                 var dao = new ContactDao();
                 var id = dao.Update(contact);
+                SetAlert("Update liên hệ thành cong", "success");
                 return RedirectToAction("Index", "QuanLyLienHe");
                 //if (id > 0)
                 //{

@@ -318,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Hinh\" />
     <Folder Include="Models\" />

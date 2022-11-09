@@ -36,7 +36,22 @@ namespace WebFood.Areas.Admin.Controllers
         //return View("Index");
         //}
 
-
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-error";
+            }
+        }
 
         public ActionResult Index(string searchString ,int page = 1, int pageSize = 10)
         {
@@ -50,6 +65,38 @@ namespace WebFood.Areas.Admin.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+                //if (id > 0)
+                //{
+                HttpPostedFileBase file = Request.Files["Picture"];
+                if (file != null && file.FileName != "")
+                {
+                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
+                    string filePath = serverPath + "/" + file.FileName;
+                    file.SaveAs(filePath);
+                    user.ImageUrl = file.FileName;
+                }
+                var id = dao.Insert(user);
+                SetAlert("Thêm user thành công", "success");
+                return RedirectToAction("Index", "QuanLyTaiKhoan");
+
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Them product thanh cong");
+                //}
+            }
+            return View("Index");
+        }
+
 
         public ActionResult Edit(int id)
         {
@@ -74,39 +121,12 @@ namespace WebFood.Areas.Admin.Controllers
                     user.ImageUrl = file.FileName;
                 }
                 var result = dao.Update(user);
+                SetAlert("Update user thành công", "success");
                 return RedirectToAction("Index", "QuanLyTaiKhoan");
             }
             return View("Index");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                var dao = new UserDao();
-                //if (id > 0)
-                //{
-                HttpPostedFileBase file = Request.Files["Picture"];
-                if (file != null && file.FileName != "")
-                {
-                    string serverPath = HttpContext.Server.MapPath("~/Hinh");
-                    string filePath = serverPath + "/" + file.FileName;
-                    file.SaveAs(filePath);
-                    user.ImageUrl = file.FileName;
-                }
-                var id = dao.Insert(user);
-                return RedirectToAction("Index", "QuanLyTaiKhoan");
-
-                //}
-                //else
-                //{
-                //    ModelState.AddModelError("", "Them product thanh cong");
-                //}
-            }
-            return View("Index");
-        }
 
 
         // delete
@@ -114,6 +134,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
+            SetAlert("Xóa user thành công", "success");
             return RedirectToAction("Index", "QuanLyTaiKhoan");
         }
         public ActionResult Detail(int id)

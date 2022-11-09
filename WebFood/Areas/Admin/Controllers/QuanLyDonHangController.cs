@@ -20,6 +20,24 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
 
+
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-error";
+            }
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -34,7 +52,7 @@ namespace WebFood.Areas.Admin.Controllers
                 long id = dao.Insert(order);
                 if (id > 0)
                 {
-
+                    SetAlert("Thêm đơn hàng thành công", "success");
                     return RedirectToAction("Index", "QuanLyDonHang");
 
                 }
@@ -50,6 +68,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new OrderDao().Delete(id);
+            SetAlert("Xóa đơn hàng thành công", "success");
             return RedirectToAction("Index", "QuanLyDonHang");
         }
         public ActionResult Detail(int id)
@@ -73,7 +92,8 @@ namespace WebFood.Areas.Admin.Controllers
             {
                 var dao = new OrderDao();
                 var id = dao.Update(order);
-                    return RedirectToAction("Index", "QuanLyDonHang");
+                SetAlert("Cập nhật đơn hàng thành công", "success");
+                return RedirectToAction("Index", "QuanLyDonHang");
                 //if (id > 0)
                 //{
 

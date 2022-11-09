@@ -23,6 +23,23 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
 
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-error";
+            }
+        }
+
 
         //public ActionResult Index(int page = 1, int pageSize = 10)
         //{
@@ -58,6 +75,7 @@ namespace WebFood.Areas.Admin.Controllers
                     product.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(product);
+                SetAlert("Add thực phẩm thành công", "success");
                 return RedirectToAction("Index", "QuanLyThucPham");
 
                 //}
@@ -96,7 +114,8 @@ namespace WebFood.Areas.Admin.Controllers
                 var result = dao.Update(product);
                 if (result)
                 {
-                return RedirectToAction("Index", "QuanLyThucPham");
+                    SetAlert("Update thực phẩm thành công", "success");
+                    return RedirectToAction("Index", "QuanLyThucPham");
                 }
 
                 //}
@@ -114,6 +133,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new ProductDao().Delete(id);
+            SetAlert("Delete thực phẩm thành công", "success");
             return RedirectToAction("Index", "QuanLyThucPham");
         }
         public ActionResult Detail(int id)

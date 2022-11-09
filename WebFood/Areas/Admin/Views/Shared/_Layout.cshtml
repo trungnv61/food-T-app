@@ -445,6 +445,12 @@
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
                             <div class="main-body">
+                                @if (TempData["AlertMessage"] != null)
+                                {
+                                <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                                    @TempData["AlertMessage"]
+                                </div>
+                                }
                                 @RenderBody()
                             </div>
                         </div>
@@ -536,7 +542,12 @@
             else {
                 nav.removeClass('active');
             }
-        });</script>
+        });
+
+
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(1000).slideUp(500);
+    </script>
 </body>
 
 </html>

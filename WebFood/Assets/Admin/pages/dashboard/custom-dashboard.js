@@ -1,5 +1,8 @@
-'use strict';
-$(document).ready(function() {
+//'use strict';
+$(document).ready(function () {
+
+    $('#AlertBox').removeClass('hide');
+    $('#AlertBox').delay(1000).slideUp(500);
 
     /*Area chart*/
 
