@@ -29,7 +29,7 @@ namespace Model.Framework
         public string ImageUrl { get; set; }
         [Display(Name = "Catagory")]
         public int? CategoryId { get; set; }
-
+        [Display(Name = "Is Active?")]
         public bool? IsActive { get; set; }
 
         public DateTime? CreatedDate { get; set; }

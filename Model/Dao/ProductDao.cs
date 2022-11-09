@@ -23,12 +23,6 @@ namespace Model.Dao
             return entity.ProductId;
         }
 
-
-  
-
-
-
-
         public IEnumerable<Product> ListAllPaging(string searchString, int page, int pageSize)
         {
             IQueryable<Product> model = db.Products;
