@@ -85,7 +85,7 @@ namespace WebFood.Areas.Admin.Controllers
                     user.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(user);
-                SetAlert("Thêm user thành công", "success");
+                SetAlert("Thêm người dùng thành công", "success");
                 return RedirectToAction("Index", "QuanLyTaiKhoan");
 
                 //}
@@ -121,7 +121,7 @@ namespace WebFood.Areas.Admin.Controllers
                     user.ImageUrl = file.FileName;
                 }
                 var result = dao.Update(user);
-                SetAlert("Update user thành công", "success");
+                SetAlert("Cập nhật người dùng thành công", "success");
                 return RedirectToAction("Index", "QuanLyTaiKhoan");
             }
             return View("Index");
@@ -134,7 +134,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
-            SetAlert("Xóa user thành công", "success");
+            SetAlert("Xóa người dùng thành công", "success");
             return RedirectToAction("Index", "QuanLyTaiKhoan");
         }
         public ActionResult Detail(int id)

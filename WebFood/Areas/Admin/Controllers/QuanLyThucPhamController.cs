@@ -75,7 +75,7 @@ namespace WebFood.Areas.Admin.Controllers
                     product.ImageUrl = file.FileName;
                 }
                 var id = dao.Insert(product);
-                SetAlert("Add thực phẩm thành công", "success");
+                SetAlert("Thêm thực phẩm thành công", "success");
                 return RedirectToAction("Index", "QuanLyThucPham");
 
                 //}
@@ -114,7 +114,7 @@ namespace WebFood.Areas.Admin.Controllers
                 var result = dao.Update(product);
                 if (result)
                 {
-                    SetAlert("Update thực phẩm thành công", "success");
+                    SetAlert("Cập nhật thực phẩm thành công", "success");
                     return RedirectToAction("Index", "QuanLyThucPham");
                 }
 
@@ -133,7 +133,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new ProductDao().Delete(id);
-            SetAlert("Delete thực phẩm thành công", "success");
+            SetAlert("Xóa thực phẩm thành công", "success");
             return RedirectToAction("Index", "QuanLyThucPham");
         }
         public ActionResult Detail(int id)

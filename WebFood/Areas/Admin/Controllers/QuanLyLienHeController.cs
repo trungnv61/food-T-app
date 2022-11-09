@@ -53,7 +53,7 @@ namespace WebFood.Areas.Admin.Controllers
                 long id = dao.Insert(contact);
                 if (id > 0)
                 {
-                    SetAlert("Thêm liên hệ thành cong", "success");
+                    SetAlert("Thêm liên hệ thành công", "success");
                     return RedirectToAction("Index", "QuanLyLienHe");
 
                 }
@@ -71,7 +71,7 @@ namespace WebFood.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             new ContactDao().Delete(id);
-            SetAlert("Xóa liên hệ thành cong", "success");
+            SetAlert("Xóa liên hệ thành công", "success");
             return RedirectToAction("Index", "QuanLyLienHe");
         }
         public ActionResult Detail(int id)
@@ -96,7 +96,7 @@ namespace WebFood.Areas.Admin.Controllers
             {
                 var dao = new ContactDao();
                 var id = dao.Update(contact);
-                SetAlert("Update liên hệ thành cong", "success");
+                SetAlert("Cập nhật liên hệ thành công", "success");
                 return RedirectToAction("Index", "QuanLyLienHe");
                 //if (id > 0)
                 //{
