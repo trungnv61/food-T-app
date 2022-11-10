@@ -12,6 +12,7 @@ namespace WebFood.Areas.Admin.Controllers
     public class QuanLyDonHangController : Controller
     {
         // GET: Admin/QuanLyDonHang
+        [Authorize(Users = "Admin", Roles = "admin")]
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new OrderDao();
@@ -38,6 +39,8 @@ namespace WebFood.Areas.Admin.Controllers
             }
         }
 
+     
+      
         public ActionResult Create()
         {
             return View();
@@ -58,7 +61,7 @@ namespace WebFood.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Them order thanh cong");
+                    ModelState.AddModelError("", "Thêm đơn hàng thành công");
                 }
             }
             return View("Index");
