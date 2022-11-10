@@ -245,6 +245,29 @@
     <Content Include="Assets\Admin\pages\widget\amchart\serial.min.js" />
     <Content Include="Assets\Admin\pages\widget\amchart\worldLow.js" />
     <Content Include="Assets\Admin\pages\widget\amchart\worldLow.min.js" />
+    <Content Include="Assets\Client\css\bootstrap.css" />
+    <Content Include="Assets\Client\css\font-awesome.min.css" />
+    <Content Include="Assets\Client\css\responsive.css" />
+    <Content Include="Assets\Client\css\style.css" />
+    <Content Include="Assets\Client\images\about-img.png" />
+    <Content Include="Assets\Client\images\client1.jpg" />
+    <Content Include="Assets\Client\images\client2.jpg" />
+    <Content Include="Assets\Client\images\f1.png" />
+    <Content Include="Assets\Client\images\f2.png" />
+    <Content Include="Assets\Client\images\f3.png" />
+    <Content Include="Assets\Client\images\f4.png" />
+    <Content Include="Assets\Client\images\f5.png" />
+    <Content Include="Assets\Client\images\f6.png" />
+    <Content Include="Assets\Client\images\f7.png" />
+    <Content Include="Assets\Client\images\f8.png" />
+    <Content Include="Assets\Client\images\f9.png" />
+    <Content Include="Assets\Client\images\favicon.png" />
+    <Content Include="Assets\Client\images\hero-bg.jpg" />
+    <Content Include="Assets\Client\images\o1.jpg" />
+    <Content Include="Assets\Client\images\o2.jpg" />
+    <Content Include="Assets\Client\js\bootstrap.js" />
+    <Content Include="Assets\Client\js\custom.js" />
+    <Content Include="Assets\Client\js\jquery-3.4.1.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -291,6 +314,11 @@
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Areas\Admin\Views\QuanLyHangHoa\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Edit.cshtml" />
+    <Content Include="Assets\Client\css\style.css.map" />
+    <Content Include="Assets\Client\css\style.scss" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Client\fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -313,13 +341,12 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Assets\Client\" />
     <Folder Include="Hinh\" />
     <Folder Include="Models\" />
   </ItemGroup>
