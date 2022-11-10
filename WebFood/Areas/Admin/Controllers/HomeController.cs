@@ -15,10 +15,6 @@ namespace WebFood.Areas.Admin.Controllers
             return View();
         }
 
-
-   
-
-
         // Write Logic Here
 
 
