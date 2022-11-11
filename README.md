@@ -12,6 +12,7 @@ Project using  tool build in support from [ASP.Net](https://dotnet.microsoft.com
 + C#
 + Javascript
 + Booststrap
++ SQL Server
 + Entity framework for autocomplet generate database mapping from database
 ### Understand parser
 The parser has 2 steps:
