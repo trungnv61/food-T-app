@@ -9,6 +9,7 @@ using PagedList;
 
 namespace WebFood.Areas.Admin.Controllers
 {
+
     public class QuanLyTaiKhoanController : Controller
     {
         // GET: Admin/QuanLyTaiKhoan
@@ -61,6 +62,7 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
         // GET
+    
         public ActionResult Create()
         {
             return View();
@@ -97,7 +99,7 @@ namespace WebFood.Areas.Admin.Controllers
             return View("Index");
         }
 
-
+    
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
@@ -129,6 +131,7 @@ namespace WebFood.Areas.Admin.Controllers
 
 
 
+
         // delete
         [HttpDelete]
         public ActionResult Delete(int id)
@@ -137,6 +140,8 @@ namespace WebFood.Areas.Admin.Controllers
             SetAlert("Xóa người dùng thành công", "success");
             return RedirectToAction("Index", "QuanLyTaiKhoan");
         }
+
+ 
         public ActionResult Detail(int id)
         {
             var user = new UserDao().ViewDetail(id);

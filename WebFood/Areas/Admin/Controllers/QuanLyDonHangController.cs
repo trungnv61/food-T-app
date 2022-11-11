@@ -12,7 +12,7 @@ namespace WebFood.Areas.Admin.Controllers
     public class QuanLyDonHangController : Controller
     {
         // GET: Admin/QuanLyDonHang
-        [Authorize(Users = "Admin", Roles = "admin")]
+     
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new OrderDao();

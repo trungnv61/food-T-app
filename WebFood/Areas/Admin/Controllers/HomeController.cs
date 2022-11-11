@@ -10,6 +10,7 @@ namespace WebFood.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
+        //[Authorize(Users = "Admin", Roles = "admin")]
         public ActionResult Index()
         {
             return View();
