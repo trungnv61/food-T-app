@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebFood.Areas.Admin.Code;
 using WebFood.Areas.Admin.Models;
 
@@ -18,17 +19,32 @@ namespace WebFood.Areas.Admin.Controllers
             return View();
         }
 
+
+        public bool IsLocalUrl(string url)
+        {
+            return true;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LoginModel model, string Url)
+        public ActionResult Index(LoginModel model, string returnUrl)
         {
             var result = new AccountModel().Login(model.UserName, model.Password);
             if (result && ModelState.IsValid)
             {
                 if (model.UserName == "Admin" && model.Password == "123456")
                 {
+                FormsAuthentication.SetAuthCookie(model.UserName, true);
                 SessionHelper.SetSession(new UserSession() { UserName = model.UserName });
-                return RedirectToAction("Index", "Home");
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }  else
+                    {
+
+                       return RedirectToAction("Index", "Home");
+                    }
                 } else
                 {
                     ModelState.AddModelError("", "Đây không phải là tài khoản admin");
@@ -36,7 +52,7 @@ namespace WebFood.Areas.Admin.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Tên đăng nhập và mật khẩu không đúng");
+                ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
             }
             return View(model);
         }
