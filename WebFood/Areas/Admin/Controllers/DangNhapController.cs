@@ -40,11 +40,13 @@ namespace WebFood.Areas.Admin.Controllers
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
                         return Redirect(returnUrl);
-                    }  else
-                    {
+                    }
+                    else
 
+                    {
                        return RedirectToAction("Index", "Home");
                     }
+
                 } else
                 {
                     ModelState.AddModelError("", "Đây không phải là tài khoản admin");

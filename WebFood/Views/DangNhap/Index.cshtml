@@ -42,170 +42,144 @@
     <link rel="stylesheet"
           type="text/css"
           href="/Assets/Admin/css/style.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
 </head>
 
-<body class="fix-menu">
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="ball-scale">
-            <div class="contain">
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-                <div class="ring"><div class="frame"></div></div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
+<body>
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
 
-    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
-        <!-- Container-fluid starts -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- Authentication card start -->
-                    <div class="login-card card-block auth-body mr-auto ml-auto">
-                        <div class="md-float-material">
-                            <div class="text-center">
-                                <img src="/Assets/Admin/images/auth/logo-dark.png"
-                                     alt="logo.png" />
-                            </div>
-
-                            @using (Html.BeginForm("Index", "DangNhap",
-                            FormMethod.Post))
-                            {@Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, null, new
-                            {
-                                @class
-                            = "alert alert-danger"
-                            })
-                            <div class="auth-box">
-                                <div class="row m-b-20">
-                                    <div class="col-md-12">
-                                        <h3 class="text-left txt-primary">
-                                            Sign In
-                                        </h3>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="input-group">
-                                    @Html.TextBoxFor(model =>
-                                    model.UserName, new
-                                         {
-                                             @class =
-                                    "form-control",
-                                             @placeholder =
-                                    "Username",
-                                             @autofocus = "autofocus"
-                                         })
-                                    @*<input
-                                            type="email"
-                                            class="form-control"
-                                            placeholder="Your Email Address"
-                                        />*@
-                                    <span class="md-line"></span>
-                                </div>
-                                <div class="input-group">
-                                    @Html.TextBoxFor(model =>
-                                    model.Password, new
-                                         {
-                                             @class =
-                                    "form-control",
-                                             @placeholder =
-                                    "Password",
-                                             @type = "password"
-                                         })
-                                    @*<input
-                                            type="password"
-                                            class="form-control"
-                                            placeholder="Password"
-                                        />*@
-                                    <span class="md-line"></span>
-                                </div>
-                                <div class="row m-t-25 text-left">
-                                    <div class="col-sm-7 col-xs-12">
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                @*<input
-                                                        type="checkbox"
-                                                        value=""
-                                                    />*@
-                                                @Html.CheckBoxFor(model => model.RememberMe, new { @class = "text-inverse" })
-                                                <span class="cr">
-                                                    <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                                </span>
-                                                <span class="text-inverse">Remember me</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-xs-12 forgot-phone text-right">
-                                        <a href="auth-reset-password.html"
-                                           class="text-right f-w-600 text-inverse">
-                                            Forgot Your Password?
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row m-t-30">
-                                    <div class="col-md-12">
-                                        <button type="submit"
-                                                class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
-                                            Sign in
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">
-                                            Thank you and enjoy our website.
-                                        </p>
-                                        <p class="text-inverse text-left">
-                                            <b>Your Authentication Team</b>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="/Assets/Admin/images/auth/Logo-small-bottom.png"
-                                             alt="small-logo.png" />
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        </div>
-                        <!-- end of form -->
-                    </div>
-                    <!-- Authentication card end -->
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+    </style>
+    <section class="vh-100" style="margin-top: 120px">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                         class="img-fluid"
+                         alt="Sample image" />
                 </div>
-                <!-- end of col-sm-12 -->
-            </div>
-            <!-- end of row -->
-        </div>
-        <!-- end of container-fluid -->
-    </section>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    @using (Html.BeginForm("Index", "DangNhap",
+                           FormMethod.Post))
+                    {@Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, null, new
+               {
+                   @class
+                             = "alert alert-danger"
+               })
+                    <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        <p class="lead fw-normal mb-0 me-3">
+                            Sign in with
+                        </p>
+                        <button type="button"
+                                class="btn btn-primary btn-floating mx-1">
+                            <i class="fa-brands fa-facebook"></i>
+                        </button>
 
-    <!-- Required Jquery -->
-    <script type="text/javascript"
-            src="/Assets/Admin/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript"
-            src="/Assets/Admin/js/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript"
-            src="/Assets/Admin/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript"
-            src="/Assets/Admin/js/bootstrap/js/bootstrap.min.js"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript"
-            src="/Assets/Admin/js/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <!-- modernizr js -->
-    <script type="text/javascript"
-            src="/Assets/Admin/js/modernizr/modernizr.js"></script>
-    <script type="text/javascript"
-            src="/Assets/Admin/js/modernizr/css-scrollbars.js"></script>
-    <script type="text/javascript"
-            src="/Assets/Admin/js/common-pages.js"></script>
+                        <button type="button"
+                                class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-google"></i>
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                    </div>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                    </div>
+
+                    <!-- Email input -->
+                <div class="form-outline mb-4">
+                    @Html.TextBoxFor(model =>
+                         model.UserName, new
+                              {
+                                  @class =
+                         "form-control form-control-lg",
+                                  @placeholder =
+                         "Username",
+                                  @autofocus = "autofocus"
+                              })
+                    @Html.Label("User address", new {@class = "form-label" })
+
+                    @*<input type="email"
+                           id="form3Example3"
+                           class="form-control form-control-lg"
+                           placeholder="Enter a valid email address" />
+                    <label class="form-label" for="form3Example3">Email address</label>*@
+                </div>
+
+                    <!-- Password input -->
+                <div class="form-outline mb-3">
+
+                    @Html.PasswordFor(model =>
+                    model.Password, new
+                         {
+                             @class =
+                    "form-control form-control-lg",
+                             @placeholder =
+                    "Password",
+                             @autofocus = "autofocus"
+                         })
+                    @Html.Label("Password", new { @class = "form-label" })
+                    @*<input type="password"
+                           id="form3Example4"
+                           class="form-control form-control-lg"
+                           placeholder="Enter password" />
+                    <label class="form-label" for="form3Example4">Password</label>*@
+                </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2"
+                                   type="checkbox"
+                                   value=""
+                                   id="form2Example3"
+                                   style="margin-left: -2px" />
+                            <label class="form-check-label"
+                                   for="form2Example3">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit"
+                                class="btn btn-primary btn-lg btn btn-default"
+                                style="
+                                        width: 149px;
+                                        height: 53px;
+                                        border-radius: 32px;
+                                    ">
+                                Login
+                        </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account?
+                            <a href="#!" class="link-danger">Register</a>
+                        </p>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
+
