@@ -82,7 +82,7 @@
                })
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                         <p class="lead fw-normal mb-0 me-3">
-                            Sign in with
+                            Register in with
                         </p>
                         <button type="button"
                                 class="btn btn-primary btn-floating mx-1">
@@ -105,44 +105,35 @@
                     </div>
 
                     <!-- Email input -->
-                <div class="form-outline mb-4">
-                    @Html.TextBoxFor(model =>
-                         model.UserName, new
-                              {
-                                  @class =
-                         "form-control form-control-lg",
-                                  @placeholder =
-                         "Username",
-                                  @autofocus = "autofocus"
-                              })
-                    @Html.Label("User address", new {@class = "form-label" })
+                    <div class="form-outline mb-4">
+                        @Html.TextBoxFor(model =>
+                             model.UserName, new
+                                  {
+                                      @class =
+                             "form-control form-control-lg",
+                                      @placeholder =
+                             "Username",
+                                      @autofocus = "autofocus"
+                                  })
+                        @Html.Label("User address", new { @class = "form-label" })
 
-                    @*<input type="email"
-                           id="form3Example3"
-                           class="form-control form-control-lg"
-                           placeholder="Enter a valid email address" />
-                    <label class="form-label" for="form3Example3">Email address</label>*@
-                </div>
+                    </div>
 
                     <!-- Password input -->
-                <div class="form-outline mb-3">
+                    <div class="form-outline mb-3">
 
-                    @Html.PasswordFor(model =>
-                    model.Password, new
-                         {
-                             @class =
-                    "form-control form-control-lg",
-                             @placeholder =
-                    "Password",
-                             @autofocus = "autofocus"
-                         })
-                    @Html.Label("Password", new { @class = "form-label" })
-                    @*<input type="password"
-                           id="form3Example4"
-                           class="form-control form-control-lg"
-                           placeholder="Enter password" />
-                    <label class="form-label" for="form3Example4">Password</label>*@
-                </div>
+                        @Html.PasswordFor(model =>
+                        model.Password, new
+                             {
+                                 @class =
+                        "form-control form-control-lg",
+                                 @placeholder =
+                        "Password",
+                                 @autofocus = "autofocus"
+                             })
+                        @Html.Label("Password", new { @class = "form-label" })
+                       
+                    </div>
 
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Checkbox -->
@@ -157,7 +148,6 @@
                                 Remember me
                             </label>
                         </div>
-                        <a href="#!" class="text-body">Forgot password?</a>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
@@ -168,12 +158,8 @@
                                         height: 53px;
                                         border-radius: 32px;
                                     ">
-                                Login
+                            Register
                         </button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">
-                            Don't have an account?
-                            <a href="@Url.Action("Index", "DangKy")" class="link-danger">Register</a>
-                        </p>
                     </div>
                 }
                 </div>
