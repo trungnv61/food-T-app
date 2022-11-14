@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\QuanLyHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyLienHeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyTaiKhoanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyThanhToanController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyThucPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeDonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeHangHoaController.cs" />
@@ -324,6 +325,7 @@
     <Content Include="Assets\Client\fonts\fontawesome-webfont.ttf" />
     <Content Include="Assets\Client\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\Client\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\Views\QuanLyThanhToan\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

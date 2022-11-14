@@ -53,6 +53,7 @@ namespace WebFood.Areas.Admin.Controllers
         {
             FoodOnlineDbContext db = new FoodOnlineDbContext();
             ViewBag.Catalog = new SelectList(db.Categories.ToList(), "CategoryId", "Name", 0);
+            ViewBag.CatalogQuantity = new SelectList(db.Orders.ToList(), "ProductId", "Quantity", 0);
             return View();
         }
 

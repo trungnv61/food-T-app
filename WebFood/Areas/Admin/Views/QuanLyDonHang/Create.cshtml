@@ -19,7 +19,7 @@
                 <div class="card-block">
                     <h4 class="sub-title">Tạo đơn hàng</h4>
 
-            
+
                     @using (Html.BeginForm("Create", "QuanLyDonHang", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
@@ -34,10 +34,12 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             @Html.LabelFor(model => model.ProductId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.OrderProduct, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.ProductId, (SelectList)ViewBag.OrderProduct, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -45,15 +47,16 @@
                         <div class="form-group row">
                             @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.Quantity, (SelectList)ViewBag.OrderQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.Quantity, (SelectList)ViewBag.OrderQuantity, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.UserId, (SelectList)ViewBag.OrderUser, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.UserId, (SelectList)ViewBag.OrderUser, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -66,12 +69,10 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group row">
                             @Html.LabelFor(model => model.PaymentId, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                             <div class="col-md-10">
-                                @Html.DropDownListFor(model => model.PaymentId, (SelectList)ViewBag.Payment, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.PaymentId, (SelectList)ViewBag.OrderPayment, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.PaymentId, "", new { @class = "text-danger" })
                             </div>
                         </div>

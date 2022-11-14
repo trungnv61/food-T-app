@@ -1,0 +1,82 @@
+﻿@model  PagedList.IPagedList<Model.Framework.Payment>
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h3 style="
+    margin: 34px;
+    font-weight: bold;
+    text-align: center;
+">
+    Quản lý thanh toán 
+</h3>
+
+<div class="card">
+    <div class="card-header">
+        <a href="#">
+            <i class="fa fa-user-plus fa-3x" style="color: #FFFFFF; margin-left: 5px"></i>
+        </a>
+        <div class="card-header-center" style=" margin-top: -34px;">
+            @using (Html.BeginForm("Index", "QuanLyThanhToan", FormMethod.Get, new { @style = "display: flex;" }))
+            {
+                <input type="text" value="@ViewBag.SearchString" name="searchString" style="margin-left: 527px; width: 272px; height: 30px" />
+                <button type="submit" style="margin-left: 26px;border-radius: 15px;background-color: black;color: white;width: 98px;height: 34px; margin-top: -2px">Tim kiem</button>
+            }
+        </div>
+        <div class="card-header-right">    <ul class="list-unstyled card-option">        <li><i class="icofont icofont-simple-left "></i></li>        <li><i class="icofont icofont-maximize full-card"></i></li>        <li><i class="icofont icofont-minus minimize-card"></i></li>        <li><i class="icofont icofont-refresh reload-card"></i></li> </ul></div>
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>ExpiryDate</th>
+                        <th>PaymentMode</th>
+                        @*<th>ChucNang</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr id="row_@item.PaymentId">
+                        <th scope="row">@item.PaymentId</th>
+                        <td>@item.Name</td>
+                        <td>@item.ExpiryDate</td>
+                        <td>@item.PaymentMode</td>
+                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.UserId">Sua</a></td>*@
+                        @*<td><a href="/Admin/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>*@
+                        <td>
+                            <i class="fa fa-trash" style="color: #D6271B"></i>
+                            @Ajax.ActionLink("!", "Delete", new { @id = item.PaymentId },
+                            new AjaxOptions
+                                 {
+                                     Confirm = "Bạn có muốn xóa bản ghi này không ?",
+                            OnComplete = "$('#row_" + @item.PaymentId + "').remove()",
+                            HttpMethod = "Delete"
+                       })
+                        </td>
+                        @*                        <td><a href="/Admin/QuanLyTaiKhoan/Edit/@item.UserId"><i class="fa fa-trash" style="color: #D6271B"></i></a></td>*@
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
+        </div>
+    </div>
+</div>
+
+<div style="
+    margin-left: 20px;
+">
+    @Html.ActionLink("Back to List", "Index")
+</div>
