@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\Controllers\ThongKeHangHoaController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeLienHeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeTaiKhoanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThongKeThanhToanController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeThucPhamController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\AboutController.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Assets\Client\fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\Client\fonts\fontawesome-webfont.woff2" />
     <Content Include="Areas\Admin\Views\QuanLyThanhToan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThongKeThanhToan\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
