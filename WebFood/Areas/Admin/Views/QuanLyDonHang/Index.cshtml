@@ -17,8 +17,8 @@
 <div class="card">
     <div class="card-header">
         @*<a href="@Url.Action("Create", "QuanLyDonHang")">
-            <i class="fa fa-user-plus fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
-        </a>*@
+                <i class="fa fa-user-plus fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
+            </a>*@
         <a href="@Url.Action("Create", "QuanLyDonHang")">
             <i class="fa fa-user-plus fa-3x" style="color:#2F4AD3; margin-left: 5px"></i>
         </a>
@@ -46,24 +46,24 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr id="row_@item.OrderDetailsId">
-                        <th scope="row">@item.OrderDetailsId</th>
-                        <td>@item.OrderNo</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.Status</td>
-                        @*<td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId">Sua</a></td>*@
-                        <td><a href="/Admin/QuanLyDonHang/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
-                        <td>
-                            <i class="fa fa-trash" style="color: #D6271B"></i>
-                            @Ajax.ActionLink("!", "Delete", new { @id = item.OrderDetailsId },
-                            new AjaxOptions
-                                 {
-                                     Confirm = "Bạn có muốn xóa bản ghi này không ?",
-                            OnComplete = "$('#row_" + @item.OrderDetailsId + "').remove()",
-                            HttpMethod = "Delete"
-                       })
-                        </td>
-                    </tr>
+                        <tr id="row_@item.OrderDetailsId">
+                            <th scope="row">@item.OrderDetailsId</th>
+                            <td>@item.OrderNo</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Status</td>
+                            @*<td><a href="/QuanLyTaiKhoan/Edit/@item.OrderDetailsId">Sua</a></td>*@
+                            <td><a href="/Admin/QuanLyDonHang/Edit/@item.OrderDetailsId"><i class="fa fa-pencil" style="color: forestgreen"></i></a></td>
+                            <td>
+                                <i class="fa fa-trash" style="color: #D6271B"></i>
+                                @Ajax.ActionLink("!", "Delete", new { @id = item.OrderDetailsId },
+                                new AjaxOptions
+                                     {
+                                         Confirm = "Bạn có muốn xóa bản ghi này không ?",
+                                OnComplete = "$('#row_" + @item.OrderDetailsId + "').remove()",
+                                HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
                     }
 
 

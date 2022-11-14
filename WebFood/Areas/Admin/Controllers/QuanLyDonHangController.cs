@@ -43,10 +43,17 @@ namespace WebFood.Areas.Admin.Controllers
       
         public ActionResult Create()
         {
+           
+            FoodOnlineDbContext db = new FoodOnlineDbContext();
+            ViewBag.OrderProduct = new SelectList(db.Products.ToList(), "ProductId", "Price", 0);
+            ViewBag.OrderQuantity = new SelectList(db.Products.ToList(), "ProductId", "Quantity", 0);
+            ViewBag.OrderUser = new SelectList(db.Users.ToList(), "UserId", "Name", 0);
+            ViewBag.OrderPayment = new SelectList(db.Payments.ToList(), "PaymentId", "Name", 0);
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Order order)
         {
             if (ModelState.IsValid)

@@ -51,13 +51,16 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr id="row_@item.CategoryId">
-                            <th scope="row">@item.CategoryId</th>
-                            <td>@item.Name</td>
-                            <td>@item.ImageUrl</td>
-                            <td>@item.IsActive</td>
-                            <td>@item.CreatedDate</td>
-                        </tr>
+                    <tr id="row_@item.CategoryId">
+                        <th scope="row">@item.CategoryId</th>
+                        <td>@item.Name</td>
+                        @*<td>@item.ImageUrl</td>*@
+                        <td>
+                            <img src="~/Hinh/@item.ImageUrl" class="img-thumbnail" style="width: 30%" />
+                        </td>
+                        <td>@item.IsActive</td>
+                        <td>@item.CreatedDate</td>
+                    </tr>
                     }
                 </tbody>
             </table>

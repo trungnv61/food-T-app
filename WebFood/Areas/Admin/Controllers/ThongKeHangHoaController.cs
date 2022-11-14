@@ -13,7 +13,7 @@ namespace WebFood.Areas.Admin.Controllers
     public class ThongKeHangHoaController : Controller
     {
         // GET: Admin/ThongKeHangHoa
-        [Authorize(Users = "Admin", Roles = "admin")]
+        //[Authorize(Users = "Admin", Roles = "admin")]
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new CategoryDao();
