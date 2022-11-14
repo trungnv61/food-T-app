@@ -28,13 +28,15 @@ namespace WebFood.Controllers
                 {
                     SessionHelper.SetSession(new UserSession() { UserName = model.UserName });
                     return RedirectToAction("Index", "./Admin/Home/Index");
+
+                  
                 }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
             }
-            else
+            else 
             {
                 ModelState.AddModelError("", "Tên đăng nhập và mật khẩu không đúng");
             }

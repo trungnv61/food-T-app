@@ -132,7 +132,23 @@
                                  @autofocus = "autofocus"
                              })
                         @Html.Label("Password", new { @class = "form-label" })
-                       
+
+                    </div>
+
+                    <div class="form-outline mb-3">
+                        @Html.TextBox()
+
+                        @Html.PasswordFor(model =>
+                        model.Password, new
+                             {
+                                 @class =
+                        "form-control form-control-lg",
+                                 @placeholder =
+                        "Password",
+                                 @autofocus = "autofocus"
+                             })
+                        @Html.Label("Password", new { @class = "form-label" })
+
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">
