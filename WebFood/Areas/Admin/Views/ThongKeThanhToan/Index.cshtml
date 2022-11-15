@@ -64,12 +64,12 @@
                             <td>@item.CvvNo</td>
                             <td>@item.Address</td>
                             <td>@item.PaymentMode</td>
-                            
+
                         </tr>
                     }
                 </tbody>
             </table>
-            @*@Html.PageListPage(Model, page => Url.Action("Index", new { page}))*@
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
     </div>
 </div>

@@ -38,15 +38,6 @@ namespace Model.Dao
 
 
 
-        //public long Insert2(User entity)
-        //{
-        //    var user = db.Users.Find(entity.UserId);
-        //    user = db.Users.Add(entity);
-        //    db.SaveChanges();
-        //    return entity.UserId;
-        //}
-
-
 
         // cap nhat
         public bool Update(User entity)
