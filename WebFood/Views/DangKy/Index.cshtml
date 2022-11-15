@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Food-T Order App 🍕</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -112,10 +112,10 @@
                                       @class =
                              "form-control form-control-lg",
                                       @placeholder =
-                             "Username",
+                             "UserName",
                                       @autofocus = "autofocus"
                                   })
-                        @Html.Label("User address", new { @class = "form-label" })
+                        @Html.Label("User name", new { @class = "form-label" })
 
                     </div>
 
@@ -153,29 +153,26 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Checkbox -->
-                        <div class="form-check mb-0">
-                            <input class="form-check-input me-2"
-                                   type="checkbox"
-                                   value=""
-                                   id="form2Example3"
-                                   style="margin-left: -2px" />
-                            <label class="form-check-label"
-                                   for="form2Example3">
-                                Remember me
-                            </label>
-                        </div>
+                  
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit"
                                 class="btn btn-primary btn-lg btn btn-default"
                                 style="
-                                        width: 149px;
-                                        height: 53px;
+                                        width: 143px;
+                                        height: 48px;
                                         border-radius: 32px;
+                                        position: relative
                                     ">
-                            Register
+                            <span style="position: absolute; top: 9px; left: 38px;">
+                                Register
+                            </span>
                         </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account?
+                            <a href="@Url.Action("Index", "DangNhap")" class="link-danger">Login</a>
+                        </p>
                     </div>
                 }
                 </div>
