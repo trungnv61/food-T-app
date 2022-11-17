@@ -51,11 +51,12 @@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.TextBoxFor(model => model.CreatedDate,
+                                    new { @class = "form-control", @type = "date"})
                                     @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                    
                             <div class="form-group row">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Create" class="btn btn-default" style="margin-left: 600px;" />
@@ -63,7 +64,19 @@
                             </div>
                         </div>
                     }
-
+                    <link href="~/Assets/Admin/js/jquery-ui/jquery-ui.min.js" />
+                    @section scripts {
+                        <script src="~/Assets/Admin/js/jquery-ui-1.13.2.min.js"></script>
+                        <script>
+                            $(document).ready(function () {
+                                $(".datepicker").datepicker({
+                                    dateFormat: "dd-mm-yy",
+                                    changemonth: true,
+                                    changeyear: true
+                                });
+                            });
+                        </script>
+                    }
                 </div>
             </div>
         </div>

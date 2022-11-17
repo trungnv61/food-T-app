@@ -16,6 +16,12 @@ namespace Model.Dao
             db = new FoodOnlineDbContext();
         }
 
+  
+        public List<Category> ListNewProduct(int top)
+        {
+            return db.Categories.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
         public long Insert(Category entity)
         {
             db.Categories.Add(entity);
@@ -42,8 +48,8 @@ namespace Model.Dao
                 var category = db.Categories.Where(value => value.CategoryId == entity.CategoryId).SingleOrDefault();
                 category.Name = entity.Name;
                 category.ImageUrl = entity.ImageUrl;
-                category.IsActive = category.IsActive;
-                category.CreatedDate = category.CreatedDate;
+                //category.IsActive = category.IsActive;
+                //category.CreatedDate = category.CreatedDate;
                 db.SaveChanges();
                 return true;
             }
