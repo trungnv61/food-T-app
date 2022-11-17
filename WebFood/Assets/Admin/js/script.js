@@ -1,7 +1,9 @@
 /*var width = $(window).width(), height = $(window).height();
 alert('width : ' +width + 'height : ' + height);*/
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
+ 
+
     var $window = $(window);
     //add id to main menu for mobile menu start
     var getBody = $("body");

@@ -15,7 +15,7 @@
 <div class="card">
     <div class="card-header">
         <div>
-            <a href="@Url.Action()">
+            <a href="@Url.Action("ExportExcel", "ThongKeTaiKhoan")">
                 <i class="fa fa-file-excel fa-2x" style="color: green; margin-left: 32px;"> Excel</i>
             </a>
 
@@ -23,9 +23,13 @@
                 <i class="fa-solid fa-file-pdf fa-2x" style="color: #FF1B0E; margin-left: 32px;"> PDF</i>
             </a>
 
-            <a href="@Url.Action("ExportWorld", "ThongKeTaiKhoan")">
-                <i class="fa-solid fa-file-word fa-2x" style="color: #146ebe; margin-left: 32px;"> Word</i>
-            </a>
+            <a href="@Url.Action("ExportWord", "ThongKeTaiKhoan",  FormMethod.Post)">
+            <i class="fa-solid fa-file-word fa-2x" style="color: #146ebe; margin-left: 32px;"> Word</i>
+            <input type="hidden" name="GridHtml" />
+            <input type="submit" id="btnSubmit" value="Export" />
+        </a>
+
+       
 
         </div>
 
@@ -41,42 +45,53 @@
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>UserName</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Postcode</th>
-                        <th>Avatar</th>
-                        <th>CreateDate</th>
-                        @*<th>ChucNang</th>*@
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr id="row_@item.UserId">
-                            <th scope="row">@item.UserId</th>
-                            <td>@item.Name</td>
-                            <td>@item.UserName</td>
-                            <td>@item.Mobile</td>
-                            <td>@item.Email</td>
-                            <td>@item.Address</td>
-                            <td>@item.PostCode</td>
-                            <td>@item.ImageUrl</td>
-                            <td>@item.CreatedDate</td>
+            <div id="Grid">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>UserName</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Postcode</th>
+                            <th>Avatar</th>
+                            <th>CreateDate</th>
+                            @*<th>ChucNang</th>*@
                         </tr>
-                    }
-                </tbody>
-            </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.UserId">
+                                <th scope="row">@item.UserId</th>
+                                <td>@item.Name</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Mobile</td>
+                                <td>@item.Email</td>
+                                <td>@item.Address</td>
+                                <td>@item.PostCode</td>
+                                <td>@item.ImageUrl</td>
+                                <td>@item.CreatedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div />
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
         </div>
-    </div>
 </div>
+    </div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("input[name='GridHtml']").val($("#Grid").html());
+    });
+    });
+</script>
+
 
 <div style="
     margin-left: 20px;
