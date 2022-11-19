@@ -56,24 +56,6 @@ namespace WebFood.Areas.Admin.Controllers
             var dao = new UserDao();
             var AccList = dao.ListAllPaging(searchString, page, pageSize);
 
-
-
-
-            //List<User> AccList = db.Users.Select(x => new User
-            //{
-            //    UserId = x.UserId,
-            //    Name = x.Name,
-            //    UserName = x.UserName,
-            //    Mobile = x.Mobile,
-            //    Email = x.Email,
-            //    Address = x.Address,
-            //    PostCode = x.PostCode,
-            //    ImageUrl = x.ImageUrl,
-            //    CreatedDate = x.CreatedDate
-            //}).ToList();
-
-
-
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
 
