@@ -48,13 +48,18 @@ namespace WebFood.Areas.Admin.Controllers
             Response.End();
             return new EmptyResult();
         }
-       
 
+
+      
         public void ExportExcel(string searchString, int page = 1, int pageSize = 10)
         {
+            var dao = new UserDao();
+            var AccList = dao.ListAllPaging(searchString, page, pageSize);
 
-          
-            //List<User> AccList = (List<User>)db.Users.Select(x => new User
+
+
+
+            //List<User> AccList = db.Users.Select(x => new User
             //{
             //    UserId = x.UserId,
             //    Name = x.Name,
@@ -65,10 +70,9 @@ namespace WebFood.Areas.Admin.Controllers
             //    PostCode = x.PostCode,
             //    ImageUrl = x.ImageUrl,
             //    CreatedDate = x.CreatedDate
-            //});
+            //}).ToList();
 
 
-            //IQueryable<User> AccList = db.Users;
 
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
@@ -95,6 +99,7 @@ namespace WebFood.Areas.Admin.Controllers
                 ws.Cells[string.Format("G{0}", rowStart)].Value = item.PostCode;
                 ws.Cells[string.Format("H{0}", rowStart)].Value = item.ImageUrl;
                 ws.Cells[string.Format("I{0}", rowStart)].Value = item.CreatedDate;
+                rowStart++;
             }
 
             ws.Cells["A:AZ"].AutoFitColumns();
