@@ -137,6 +137,9 @@ namespace WebFood.Areas.Admin.Controllers
             SetAlert("Xóa thực phẩm thành công", "success");
             return RedirectToAction("Index", "QuanLyThucPham");
         }
+
+
+
         public ActionResult Detail(int id)
         {
             var product = new ProductDao().ViewDetail(id);

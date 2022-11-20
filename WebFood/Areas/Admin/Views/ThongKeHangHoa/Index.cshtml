@@ -12,18 +12,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="card">
     <div class="card-header">
-        <div>
-            <a href="@Url.Action("ExportExcel", "ThongKeHangHoa")">
-                <i class="fa fa-file-excel fa-2x" style="color: green; margin-left: 32px;"> Excel</i>
-            </a>
+        <div style="display: flex">
 
-            <a href="@Url.Action("ExportPDF", "ThongKeHangHoa")">
-                <i class="fa-solid fa-file-pdf fa-2x" style="color: #FF1B0E; margin-left: 32px;"> PDF</i>
-            </a>
+            @using (Html.BeginForm("ExportPDF", "ThongKeHangHoa", FormMethod.Post, new { @style = "margin-left: 16px", }))
+            {
+                <i class="fa-solid fa-file-pdf fa-2x" style="color: #FF1B0E">
+                </i>
+                <input type="hidden" name="GridHtml" />
+                <input type="submit" id="btnSubmit" value="ExportPDF" />
+            }
 
-            <a href="@Url.Action("Create", "QuanLyTaiKhoan")">
-                <i class="fa-solid fa-file-word fa-2x" style="color: #146ebe; margin-left: 32px;"> Word</i>
-            </a>
+            @using (Html.BeginForm("ExportWord", "ThongKeHangHoa", FormMethod.Post, new { @style = "margin-left: 16px", }))
+            {
+                <i class="fa-solid fa-file-word fa-2x" style="color: #146ebe; margin-left: 32px;"></i>
+                <input type="hidden" name="GridHtml" />
+                <input type="submit" id="btnSubmit" value="ExportWord" />
+            }
+
+            @using (Html.BeginForm("ExportExcel", "ThongKeHangHoa", FormMethod.Post, new { @style = "margin-left: 16px", }))
+            {
+                <i class="fa fa-file-excel fa-2x" style="color: green; margin-left: 32px;"></i>
+                <input type="hidden" name="GridHtml" />
+                <input type="submit" id="btnSubmit" value="ExportExcel" />
+            }
         </div>
 
         <div class="card-header-center" style=" margin-top: -34px;">
@@ -37,39 +48,50 @@
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>IsActive</th>
-                        <th>CreateDate</th>
-                        @*<th>ChucNang</th>*@
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr id="row_@item.CategoryId">
-                            <th scope="row">@item.CategoryId</th>
-                            <td>@item.Name</td>
-                            @*<td>@item.ImageUrl</td>*@
-                            <td>
-                                <img src="~/Hinh/@item.ImageUrl" class="img-thumbnail" style="width: 30%" />
-                            </td>
-                            <td>@item.IsActive</td>
-                            <td>@item.CreatedDate</td>
+            <div id="Grid" cellpadding="0" cellspacing="0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>IsActive</th>
+                            <th>CreateDate</th>
+                            @*<th>ChucNang</th>*@
                         </tr>
-                    }
-                </tbody>
-            </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.CategoryId">
+                                <th scope="row">@item.CategoryId</th>
+                                <td>@item.Name</td>
+                                <td>
+                                    @*<img src="~/Hinh/@item.ImageUrl" class="img-thumbnail" style="width: 30%" />*@
+                                    <img src="~/Hinh/@item.ImageUrl" class="img-thumbnail" style="width: 30%"></img>
+                                </td>
+                                <td>@item.IsActive</td>
+                                <td>@item.CreatedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
         </div>
     </div>
-</div>
-<div style="
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("input[name='GridHtml']").val($("#Grid").html());
+        });
+    });
+    </script>
+    <div style="
     margin-left: 20px;
 ">
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

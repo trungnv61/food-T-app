@@ -7,11 +7,20 @@ using Model.Dao;
 using Rotativa;
 using PagedList;
 using OfficeOpenXml;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.text.html.simpleparser;
+using System.Data;
+using ClosedXML.Excel;
+using Model.Framework;
 
 namespace WebFood.Areas.Admin.Controllers
 {
     public class ThongKeLienHeController : Controller
     {
+        FoodOnlineDbContext db = new FoodOnlineDbContext();
         // GET: Admin/ThongKeLienHe
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
@@ -21,48 +30,71 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult ExportPDF()
-        {
-            return new ActionAsPdf("Index")
-            {
-                FileName = Server.MapPath("~/Hinh/ThongKeLienHe.pdf")
-            };
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public FileResult ExportPDF(string GridHtml)
+        {
+            using (MemoryStream stream = new System.IO.MemoryStream())
+            {
+                StringReader sr = new StringReader(GridHtml);
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                pdfDoc.Close();
+                return File(stream.ToArray(), "application/pdf", "ThongKeLienHe.pdf");
+            }
         }
 
-        public void ExportExcel(string searchString, int page = 1, int pageSize = 10)
+        [HttpPost]
+        [ValidateInput(false)]
+        public EmptyResult ExportWord(string GridHtml)
         {
-            var dao = new ContactDao();
-            var AccList = dao.ListAllPaging(searchString, page, pageSize);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ThongKeLienHe.doc");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-word";
+            Response.Output.Write(GridHtml);
+            Response.Flush();
+            Response.End();
+            return new EmptyResult();
+        }
 
-            ExcelPackage pck = new ExcelPackage();
-            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
 
-            ws.Cells["A6"].Value = "ContactId";
-            ws.Cells["B6"].Value = "Name";
-            ws.Cells["C6"].Value = "Email";
-            ws.Cells["D6"].Value = "Subject";
-            ws.Cells["E6"].Value = "Message";
-            ws.Cells["F6"].Value = "CreatedDate";
+        [HttpPost]
+        public FileResult ExportExcel()
+        {
 
-            int rowStart = 7;
-            foreach (var item in AccList)
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[6] { new DataColumn("ContactId"),
+                                            new DataColumn("Name"),
+                                            new DataColumn("Email"),
+                                            new DataColumn("Subject"),
+                                            new DataColumn("Message"),
+                                            new DataColumn("CreatedDate"),
+            });
+
+
+            var contacts = from contact in db.Contacts.OrderByDescending(x => x.ContactId)
+                        select contact;
+
+            foreach (var contact in contacts)
             {
-                ws.Cells[string.Format("A{0}", rowStart)].Value = item.ContactId;
-                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Name;
-                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Email;
-                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Subject;
-                ws.Cells[string.Format("E{0}", rowStart)].Value = item.Message;
-                ws.Cells[string.Format("F{0}", rowStart)].Value = item.CreatedDate;
-                rowStart++;
+                dt.Rows.Add(contact.ContactId, contact.Name, contact.Email, contact.Subject, contact.Message,
+                            contact.CreatedDate);
             }
 
-            ws.Cells["A:AZ"].AutoFitColumns();
-            Response.Clear();
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment: filename=" + "ThongKeTaiKhoan.xlsx");
-            Response.BinaryWrite(pck.GetAsByteArray());
-            Response.End();
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ThongKeLienHe.xlsx");
+                }
+            }
         }
     }
 }

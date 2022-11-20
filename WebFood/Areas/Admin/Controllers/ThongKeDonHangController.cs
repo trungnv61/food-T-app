@@ -7,12 +7,20 @@ using Model.Dao;
 using Rotativa;
 using PagedList;
 using OfficeOpenXml;
-
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.text.html.simpleparser;
+using System.Data;
+using ClosedXML.Excel;
+using Model.Framework;
 
 namespace WebFood.Areas.Admin.Controllers
 {
     public class ThongKeDonHangController : Controller
     {
+        FoodOnlineDbContext db = new FoodOnlineDbContext();
         // GET: Admin/ThongKeDonHang
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
@@ -22,52 +30,73 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult ExportPDF()
+        [HttpPost]
+        [ValidateInput(false)]
+        public FileResult ExportPDF(string GridHtml)
         {
-            return new ActionAsPdf("Index")
+            using (MemoryStream stream = new System.IO.MemoryStream())
             {
-                FileName = Server.MapPath("~/Hinh/ThongKeDonHang.pdf")
-            };
-
+                StringReader sr = new StringReader(GridHtml);
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                pdfDoc.Close();
+                return File(stream.ToArray(), "application/pdf", "ThongKeDonHang.pdf");
+            }
         }
 
-        public void ExportExcel(string searchString, int page = 1, int pageSize = 10)
+        [HttpPost]
+        [ValidateInput(false)]
+        public EmptyResult ExportWord(string GridHtml)
         {
-            var dao = new OrderDao();
-            var AccList = dao.ListAllPaging(searchString, page, pageSize);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ThongKeDonHang.doc");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-word";
+            Response.Output.Write(GridHtml);
+            Response.Flush();
+            Response.End();
+            return new EmptyResult();
+        }
 
-            ExcelPackage pck = new ExcelPackage();
-            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
 
-            ws.Cells["A6"].Value = "OrderDetailsId ";
-            ws.Cells["B6"].Value = "OrderNo";
-            ws.Cells["C6"].Value = "ProductId ";
-            ws.Cells["D6"].Value = "Quantity";
-            ws.Cells["E6"].Value = "UserId";
-            ws.Cells["F6"].Value = "Status";
-            ws.Cells["G6"].Value = "PaymentId";
-            ws.Cells["H6"].Value = "OrderDate";
+        [HttpPost]
+        public FileResult ExportExcel()
+        {
 
-            int rowStart = 7;
-            foreach (var item in AccList)
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[8] { new DataColumn("OrderDetailsId"),
+                                            new DataColumn("OrderNo"),
+                                            new DataColumn("ProductId"),
+                                            new DataColumn("Quantity"),
+                                            new DataColumn("UserId"),
+                                            new DataColumn("Status"),
+                                            new DataColumn("PaymentId"),
+                                            new DataColumn("OrderDate"),
+            });
+
+
+            var orders = from order in db.Orders.OrderByDescending(x => x.OrderDetailsId)
+                        select order;
+
+            foreach (var order in orders)
             {
-                ws.Cells[string.Format("A{0}", rowStart)].Value = item.OrderDetailsId;
-                ws.Cells[string.Format("B{0}", rowStart)].Value = item.OrderNo;
-                ws.Cells[string.Format("C{0}", rowStart)].Value = item.ProductId;
-                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Quantity;
-                ws.Cells[string.Format("E{0}", rowStart)].Value = item.UserId;
-                ws.Cells[string.Format("F{0}", rowStart)].Value = item.Status;
-                ws.Cells[string.Format("G{0}", rowStart)].Value = item.PaymentId;
-                ws.Cells[string.Format("H{0}", rowStart)].Value = item.OrderDate;
-                rowStart++;
+                dt.Rows.Add(order.OrderDetailsId, order.OrderNo, order.ProductId, order.Quantity, order.UserId,
+                            order.Status, order.PaymentId, order.OrderDate);
             }
 
-            ws.Cells["A:AZ"].AutoFitColumns();
-            Response.Clear();
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment: filename=" + "ThongKeTaiKhoan.xlsx");
-            Response.BinaryWrite(pck.GetAsByteArray());
-            Response.End();
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ThongKeDonHang.xlsx");
+                }
+            }
         }
+
     }
 }

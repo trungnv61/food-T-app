@@ -7,12 +7,21 @@ using Model.Dao;
 using Rotativa;
 using PagedList;
 using OfficeOpenXml;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using iTextSharp.text.html.simpleparser;
+using System.Data;
+using ClosedXML.Excel;
+using Model.Framework;
 
 namespace WebFood.Areas.Admin.Controllers
 {
     public class ThongKeThucPhamController : Controller
     {
         // GET: Admin/ThongKeThucPham
+        FoodOnlineDbContext db = new FoodOnlineDbContext();
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
             var dao = new ProductDao();
@@ -21,54 +30,73 @@ namespace WebFood.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult ExportPDF()
-        {
-            return new ActionAsPdf("Index")
-            {
-                FileName = Server.MapPath("~/Hinh/ThongKeThucPham.pdf")
-            };
 
+        [HttpPost]
+        [ValidateInput(false)]
+        public FileResult ExportPDF(string GridHtml)
+        {
+            using (MemoryStream stream = new System.IO.MemoryStream())
+            {
+                StringReader sr = new StringReader(GridHtml);
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                pdfDoc.Close();
+                return File(stream.ToArray(), "application/pdf", "ThongKeThucPham.pdf");
+            }
         }
 
-        public void ExportExcel(string searchString, int page = 1, int pageSize = 10)
+        [HttpPost]
+        [ValidateInput(false)]
+        public EmptyResult ExportWord(string GridHtml)
         {
-            var dao = new ProductDao();
-            var AccList = dao.ListAllPaging(searchString, page, pageSize);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ThongKeThucPham.doc");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-word";
+            Response.Output.Write(GridHtml);
+            Response.Flush();
+            Response.End();
+            return new EmptyResult();
+        }
 
-            ExcelPackage pck = new ExcelPackage();
-            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+        [HttpPost]
+        public FileResult ExportExcel()
+        {
 
-            ws.Cells["A6"].Value = "ProductId";
-            ws.Cells["B6"].Value = "Name";
-            ws.Cells["C6"].Value = "Description";
-            ws.Cells["D6"].Value = "Price";
-            ws.Cells["E6"].Value = "Quantity";
-            ws.Cells["F6"].Value = "ImageUrl";
-            ws.Cells["G6"].Value = "CategoryId";
-            ws.Cells["H6"].Value = "IsActive";
-            ws.Cells["I6"].Value = "CreatedDate";
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[9] { new DataColumn("ProductId"),
+                                            new DataColumn("Name"),
+                                            new DataColumn("Description"),
+                                            new DataColumn("Price"),
+                                            new DataColumn("Quantity"),
+                                            new DataColumn("ImageUrl"),
+                                            new DataColumn("CategoryId"),
+                                            new DataColumn("IsActive"),
+                                            new DataColumn("CreatedDate"),
+            });
 
-            int rowStart = 7;
-            foreach (var item in AccList)
+
+            var products = from product in db.Products.OrderByDescending(x => x.ProductId)
+                        select product;
+
+            foreach (var product in products)
             {
-                ws.Cells[string.Format("A{0}", rowStart)].Value = item.ProductId;
-                ws.Cells[string.Format("B{0}", rowStart)].Value = item.Name;
-                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Description;
-                ws.Cells[string.Format("D{0}", rowStart)].Value = item.Price;
-                ws.Cells[string.Format("E{0}", rowStart)].Value = item.Quantity;
-                ws.Cells[string.Format("F{0}", rowStart)].Value = item.ImageUrl;
-                ws.Cells[string.Format("G{0}", rowStart)].Value = item.CategoryId;
-                ws.Cells[string.Format("H{0}", rowStart)].Value = item.IsActive;
-                ws.Cells[string.Format("I{0}", rowStart)].Value = item.CreatedDate;
-                rowStart++;
+                dt.Rows.Add(product.ProductId, product.Name, product.Description, product.Price, product.Quantity,
+                            product.ImageUrl, product.CategoryId, product.IsActive, product.CreatedDate);
             }
 
-            ws.Cells["A:AZ"].AutoFitColumns();
-            Response.Clear();
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment: filename=" + "ThongKeTaiKhoan.xlsx");
-            Response.BinaryWrite(pck.GetAsByteArray());
-            Response.End();
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ThongKeThucPham.xlsx");
+                }
+            }
         }
 
     }
