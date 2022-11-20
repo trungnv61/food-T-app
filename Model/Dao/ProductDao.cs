@@ -63,6 +63,7 @@ namespace Model.Dao
                 product.Description = entity.Description;
                 product.Quantity = entity.Quantity;
                 product.CategoryId = entity.CategoryId;
+                product.Price = entity.Price;
                 db.SaveChanges();
                 return true;
             } catch (Exception ex)

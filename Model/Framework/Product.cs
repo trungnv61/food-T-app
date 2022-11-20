@@ -22,6 +22,8 @@ namespace Model.Framework
 
         public string Description { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:#,###.##0}", ApplyFormatInEditMode = false)]
+
         public decimal? Price { get; set; }
 
         public int? Quantity { get; set; }
